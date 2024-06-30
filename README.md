@@ -151,7 +151,7 @@ Reinforcement learning (RL) involves training an agent to make a sequence of dec
 
 **How It Works**: MSE measures the average squared difference between the actual and predicted values.
 <p>MSE = (1/n) * Σ(y<sub>i</sub> - ŷ<sub>i</sub>)<sup>2</sup></p>
-where \( y_i \) is the actual value and \( \hat{y}_i \) is the predicted value.
+<p>where \( y_i \) is the actual value and \( \hat{y}_i \) is the predicted value.</p>
 
 **Key Factors**: Minimizing MSE requires accurate predictions that are close to the actual values. Squaring the errors penalizes larger errors more, making the model sensitive to outliers.
 
@@ -162,7 +162,7 @@ where \( y_i \) is the actual value and \( \hat{y}_i \) is the predicted value.
 
 **How It Works**: Cross-Entropy Loss calculates the difference between the actual label and the predicted probability.
 <p>Cross-Entropy Loss = - (1/n) * Σ [ y<sub>i</sub> log(ŷ<sub>i</sub>) + (1 - y<sub>i</sub>) log(1 - ŷ<sub>i</sub>) ]</p>
-where \( y_i \) is the actual label (0 or 1) and \( \hat{y}_i \) is the predicted probability.
+<p>where \( y_i \) is the actual label (0 or 1) and \( \hat{y}_i \) is the predicted probability.</p>
 
 **Key Factors**: Minimizing Cross-Entropy Loss requires the predicted probabilities to be close to the actual labels. This ensures that the model is confident and correct in its predictions.
 
@@ -173,7 +173,7 @@ where \( y_i \) is the actual label (0 or 1) and \( \hat{y}_i \) is the predicte
 
 **How It Works**: Hinge Loss measures the margin between the actual class and the predicted class.
 <p>Hinge Loss = (1/n) * Σ max(0, 1 - y<sub>i</sub> * ŷ<sub>i</sub>)</p>
-where \( y_i \) is the actual label (-1 or 1) and \( \hat{y}_i \) is the predicted value.
+<p>where \( y_i \) is the actual label (-1 or 1) and \( \hat{y}_i \) is the predicted value.</p>
 
 **Key Factors**: Minimizing Hinge Loss requires maximizing the margin between classes while correctly classifying the data points. It ensures that the decision boundary is as far as possible from the closest data points of each class.
 
@@ -185,10 +185,10 @@ where \( y_i \) is the actual label (-1 or 1) and \( \hat{y}_i \) is the predict
 **How It Works**: 
 - **Gini Impurity** measures the likelihood of incorrect classification of a randomly chosen element.
   <p>Gini Impurity = 1 - Σ p<sub>i</sub><sup>2</sup></p>
-  where \( p_i \) is the probability of class \( i \).
+  <p>where \( p_i \) is the probability of class \( i \).</p>
 - **Entropy** measures the uncertainty in the dataset.
   <p>Entropy = - Σ p<sub>i</sub> log(p<sub>i</sub>)</p>
-  where \( p_i \) is the probability of class \( i \).
+  <p>where \( p_i \) is the probability of class \( i \).</p>
 
 **Key Factors**: Lower Gini Impurity and Entropy values indicate a more homogeneous node, leading to better classification performance. Decision trees aim to split the data to minimize these values.
 
@@ -199,9 +199,10 @@ where \( y_i \) is the actual label (-1 or 1) and \( \hat{y}_i \) is the predict
 
 **How It Works**: MAE measures the average absolute difference between the actual and predicted values.
 <p>MAE = (1/n) * Σ | y<sub>i</sub> - ŷ<sub>i</sub> |</p>
-where \( y_i \) is the actual value and \( \hat{y}_i \) is the predicted value.
+<p>where \( y_i \) is the actual value and \( \hat{y}_i \) is the predicted value.</p>
 
 **Key Factors**: Minimizing MAE requires accurate predictions with smaller deviations from actual values. Unlike MSE, MAE is less sensitive to outliers, providing a straightforward error measure.
+
 
 ## 4. Universe of Problems Machine Learning Models Solve
 
