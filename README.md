@@ -451,7 +451,7 @@ In cybersecurity, one critical task is distinguishing between legitimate and mal
 ### Summary
 Understanding these key classification models and their applications in cybersecurity helps in selecting the right tool for the task. Each model has its strengths and is suited for different types of problems, from straightforward binary decisions to complex pattern recognition in large datasets.
 
-## 4.2 Regression
+### 4.2 Regression
 
 ### Overview
 Regression models are used to predict continuous outcomes based on input features. In cybersecurity, regression models can be utilized for tasks such as predicting the time to resolve security incidents, estimating the potential financial impact of a security breach, or forecasting the number of future cyber attacks. By understanding and applying regression models, we can make more informed decisions and better manage security risks.
