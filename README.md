@@ -150,7 +150,7 @@ Performance metrics are measures used to evaluate the effectiveness of a machine
 **How It Works**: Accuracy measures the proportion of correct predictions out of the total predictions.
 <p>Accuracy = (True Positives + True Negatives) / Total Predictions</p>
 
-**Key Factors**: High accuracy requires both true positives and true negatives to be high. 
+**Key Factors**: High accuracy requires both true positives and true negatives to be high.
 
 **Example Explanation**: 
 If you have 100 emails, 50 are spam (positive) and 50 are not spam (negative). If your model correctly identifies 45 spam emails (True Positives) and 40 not spam emails (True Negatives), your accuracy is:
@@ -169,7 +169,7 @@ Despite the high accuracy, your model is not good at identifying spam (low True 
 **How It Works**: Precision measures the proportion of true positive predictions out of all positive predictions.
 <p>Precision = True Positives / (True Positives + False Positives)</p>
 
-**Key Factors**: High precision requires minimizing false positives. 
+**Key Factors**: High precision requires minimizing false positives.
 
 **Example Explanation**: 
 If your model predicts 20 emails as phishing, but only 15 of them are actually phishing (True Positives) and 5 are not (False Positives), your precision is:
@@ -185,7 +185,7 @@ High precision ensures that most emails flagged as phishing are indeed phishing,
 **How It Works**: Recall measures the proportion of true positive predictions out of all actual positives.
 <p>Recall = True Positives / (True Positives + False Negatives)</p>
 
-**Key Factors**: High recall requires minimizing false negatives. 
+**Key Factors**: High recall requires minimizing false negatives.
 
 **Example Explanation**: 
 If there are 20 malware instances in your system and your model correctly identifies 15 of them (True Positives) but misses 5 (False Negatives), your recall is:
@@ -201,7 +201,7 @@ High recall ensures that most malware instances are detected, even if it means s
 **How It Works**: The F1 Score is the harmonic mean of precision and recall.
 <p>F1 Score = 2 * (Precision * Recall) / (Precision + Recall)</p>
 
-**Key Factors**: The F1 Score balances precision and recall. 
+**Key Factors**: The F1 Score balances precision and recall.
 
 **Example Explanation**: 
 Using the previous precision (0.75) and recall (0.75) examples:
@@ -217,10 +217,78 @@ The F1 Score is high only when both precision and recall are high, making it sui
 **How It Works**: The ROC curve plots the true positive rate against the false positive rate at various threshold settings. AUC (Area Under the Curve) measures the entire two-dimensional area underneath the entire ROC curve.
 <p>AUC = ∫<sub>0</sub><sup>1</sup> ROC(t) dt</p>
 
-**Key Factors**: High ROC-AUC indicates that the model performs well across all thresholds. 
+**Key Factors**: High ROC-AUC indicates that the model performs well across all thresholds.
 
 **Example Explanation**: 
 A model with a high AUC means it is good at distinguishing between positive and negative classes across different threshold values. This is crucial for models that need to operate effectively at various sensitivity levels.
+
+### Specificity (True Negative Rate)
+**When to Use**: Use specificity when the cost of false positives is low, but the cost of false negatives is high.
+
+**Cybersecurity Use Case**: Identifying legitimate user activities where incorrectly flagging legitimate activities as threats could disrupt user experience.
+
+**How It Works**: Specificity measures the proportion of true negative predictions out of all actual negatives.
+<p>Specificity = True Negatives / (True Negatives + False Positives)</p>
+
+**Key Factors**: High specificity requires minimizing false positives.
+
+**Example Explanation**: 
+If there are 80 legitimate activities (negatives) and your model correctly identifies 70 of them (True Negatives) but incorrectly flags 10 as threats (False Positives), your specificity is:
+<p>Specificity = 70 / (70 + 10) = 0.875 or 87.5%</p>
+
+High specificity ensures that legitimate activities are not incorrectly flagged, minimizing disruptions.
+
+### Matthews Correlation Coefficient (MCC)
+**When to Use**: Use MCC for evaluating the quality of binary classifications, especially with imbalanced datasets.
+
+**Cybersecurity Use Case**: Assessing the overall performance of a model detecting both common and rare cyber threats.
+
+**How It Works**: MCC measures the correlation between the observed and predicted classifications, ranging from -1 to +1.
+<p>MCC = (TP * TN - FP * FN) / sqrt((TP + FP)(TP + FN)(TN + FP)(TN + FN))</p>
+
+**Key Factors**: An MCC of +1 indicates perfect prediction, 0 indicates no better than random prediction, and -1 indicates total disagreement between prediction and observation.
+
+**Example Explanation**: 
+If your model has 50 True Positives (TP), 40 True Negatives (TN), 10 False Positives (FP), and 20 False Negatives (FN), your MCC is:
+<p>MCC = (50 * 40 - 10 * 20) / sqrt((50 + 10)(50 + 20)(40 + 10)(40 + 20)) = 0.42</p>
+
+MCC provides a balanced measure even if the classes are of very different sizes.
+
+### Logarithmic Loss (Log Loss)
+**When to Use**: Use Log Loss to evaluate the performance of a classification model that outputs probabilities.
+
+**Cybersecurity Use Case**: Evaluating the confidence of a phishing detection model that provides probability scores for each email.
+
+**How It Works**: Log Loss measures the uncertainty of the probabilities assigned to each class.
+<p>Log Loss = - (1/n) * Σ [ y<sub>i</sub> log(ŷ<sub>i</sub>) + (1 - y<sub>i</sub>) log(1 - ŷ<sub>i</sub>) ]</p>
+where y<sub>i</sub> is the actual label (0 or 1) and ŷ<sub>i</sub> is the predicted probability.
+
+**Key Factors**: Lower Log Loss indicates better performance, with the model providing probabilities closer to the actual class labels.
+
+**Example Explanation**: 
+If your model predicts probabilities of an email being phishing as 0.8 (true label 1), 0.4 (true label 0), the Log Loss is:
+<p>Log Loss = - (1/2) * [1 * log(0.8) + 0 * log(0.6) + 1 * log(0.4) + 0 * log(0.6)] ≈ 0.51</p>
+
+### Confusion Matrix
+**When to Use**: Use a confusion matrix to get a complete picture of how your classification model is performing.
+
+**Cybersecurity Use Case**: Analyzing the performance of an intrusion detection system by understanding the counts of true positives, false positives, true negatives, and false negatives.
+
+**How It Works**: A confusion matrix is a table that describes the performance of a classification model by comparing actual and predicted classifications.
+<p>
+|               | Predicted Positive | Predicted Negative |
+| ------------- | ------------------ | ------------------ |
+| Actual Positive | True Positive (TP)  | False Negative (FN) |
+| Actual Negative | False Positive (FP) | True Negative (TN)  |
+</p>
+
+**Key Factors**: The confusion matrix helps calculate various metrics like accuracy, precision, recall, and F1 score.
+
+**Example Explanation**: 
+If your model identifies 50 actual positives as positives (TP), 10 actual positives as negatives (FN), 40 actual negatives as negatives (TN), and 10 actual negatives as positives (FP), the confusion matrix helps visualize these counts.
+
+### Summary
+Understanding these key performance metrics and their applications in cybersecurity helps in selecting the right tool for evaluating model performance. Each metric has its strengths and is suited for different types of problems, from accuracy and precision to recall and ROC-AUC, enhancing our ability to implement effective and efficient security measures.
 
 ## 3. Understanding Cost Functions
 
