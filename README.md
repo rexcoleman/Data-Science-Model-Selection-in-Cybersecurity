@@ -151,7 +151,7 @@ Reinforcement learning (RL) involves training an agent to make a sequence of dec
 
 **How It Works**: MSE measures the average squared difference between the actual and predicted values.
 <p>MSE = (1/n) * Σ(y<sub>i</sub> - ŷ<sub>i</sub>)<sup>2</sup></p>
-<p>where \( y_i \) is the actual value and \( \hat{y}_i \) is the predicted value.</p>
+<p>where y<sub>i</sub> is the actual value and ŷ<sub>i</sub>) is the predicted value.</p>
 
 **Key Factors**: Minimizing MSE requires accurate predictions that are close to the actual values. Squaring the errors penalizes larger errors more, making the model sensitive to outliers.
 
