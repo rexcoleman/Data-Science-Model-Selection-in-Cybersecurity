@@ -151,7 +151,6 @@ Reinforcement learning (RL) involves training an agent to make a sequence of dec
 
 **How It Works**: MSE measures the average squared difference between the actual and predicted values.
 <p>MSE = (1/n) * Σ(y<sub>i</sub> - ŷ<sub>i</sub>)<sup>2</sup></p>
-<p>where y<sub>i</sub> is the actual value and ŷ<sub>i</sub> is the predicted value.</p>
 where y<sub>i</sub> is the actual value and ŷ<sub>i</sub> is the predicted value.
 
 **Key Factors**: Minimizing MSE requires accurate predictions that are close to the actual values. Squaring the errors penalizes larger errors more, making the model sensitive to outliers.
@@ -163,7 +162,7 @@ where y<sub>i</sub> is the actual value and ŷ<sub>i</sub> is the predicted valu
 
 **How It Works**: Cross-Entropy Loss calculates the difference between the actual label and the predicted probability.
 <p>Cross-Entropy Loss = - (1/n) * Σ [ y<sub>i</sub> log(ŷ<sub>i</sub>) + (1 - y<sub>i</sub>) log(1 - ŷ<sub>i</sub>) ]</p>
-<p>where \( y_i \) is the actual label (0 or 1) and \( \hat{y}_i \) is the predicted probability.</p>
+where y<sub>i</sub> is the actual label (0 or 1) and ŷ<sub>i</sub> is the predicted probability.
 
 **Key Factors**: Minimizing Cross-Entropy Loss requires the predicted probabilities to be close to the actual labels. This ensures that the model is confident and correct in its predictions.
 
@@ -174,7 +173,7 @@ where y<sub>i</sub> is the actual value and ŷ<sub>i</sub> is the predicted valu
 
 **How It Works**: Hinge Loss measures the margin between the actual class and the predicted class.
 <p>Hinge Loss = (1/n) * Σ max(0, 1 - y<sub>i</sub> * ŷ<sub>i</sub>)</p>
-<p>where \( y_i \) is the actual label (-1 or 1) and \( \hat{y}_i \) is the predicted value.</p>
+where y<sub>i</sub> is the actual label (-1 or 1) and ŷ<sub>i</sub> is the predicted value.
 
 **Key Factors**: Minimizing Hinge Loss requires maximizing the margin between classes while correctly classifying the data points. It ensures that the decision boundary is as far as possible from the closest data points of each class.
 
@@ -186,10 +185,10 @@ where y<sub>i</sub> is the actual value and ŷ<sub>i</sub> is the predicted valu
 **How It Works**: 
 - **Gini Impurity** measures the likelihood of incorrect classification of a randomly chosen element.
   <p>Gini Impurity = 1 - Σ p<sub>i</sub><sup>2</sup></p>
-  <p>where \( p_i \) is the probability of class \( i \).</p>
+  where p<sub>i</sub> is the probability of class i.
 - **Entropy** measures the uncertainty in the dataset.
   <p>Entropy = - Σ p<sub>i</sub> log(p<sub>i</sub>)</p>
-  <p>where \( p_i \) is the probability of class \( i \).</p>
+  where p<sub>i</sub> is the probability of class i.
 
 **Key Factors**: Lower Gini Impurity and Entropy values indicate a more homogeneous node, leading to better classification performance. Decision trees aim to split the data to minimize these values.
 
@@ -200,58 +199,6 @@ where y<sub>i</sub> is the actual value and ŷ<sub>i</sub> is the predicted valu
 
 **How It Works**: MAE measures the average absolute difference between the actual and predicted values.
 <p>MAE = (1/n) * Σ | y<sub>i</sub> - ŷ<sub>i</sub> |</p>
-<p>where y<sub>i</sub> is the actual value and \( \hat{y}_i \) is the predicted value.</p>
+where y<sub>i</sub> is the actual value and ŷ<sub>i</sub> is the predicted value.
 
 **Key Factors**: Minimizing MAE requires accurate predictions with smaller deviations from actual values. Unlike MSE, MAE is less sensitive to outliers, providing a straightforward error measure.
-
-
-## 4. Universe of Problems Machine Learning Models Solve
-
-### 4.1 Classification
-
-#### Overview
-In cybersecurity, one critical task is distinguishing between legitimate and malicious activities. For example, imagine you need to protect your email system from phishing attacks. The goal is to identify and block phishing emails while allowing legitimate ones through. This task of sorting emails into 'phishing' and 'not phishing' categories is called classification. Classification helps us make decisions based on patterns learned from data, such as distinguishing between different types of cyber threats.
-
-#### Key Models
-
-- **Logistic Regression**: 
-  - **When to Use**: Use logistic regression for straightforward, binary decisions, like detecting phishing emails.
-  - **How It Works**: This model calculates the probability that an email is phishing based on its characteristics. If the probability is high, the email is classified as phishing.
-  - **Cost Function**: The cost function used is Cross-Entropy Loss, which measures the difference between the actual and predicted probabilities.
-  - **Example**: Logistic regression can analyze features like suspicious links, email content, and sender information to filter out phishing emails.
-
-- **Decision Trees**: 
-  - **When to Use**: Use decision trees when you need a model that is easy to visualize and interpret, especially for straightforward decision-making processes.
-  - **How It Works**: The model splits data into branches based on feature values, forming a tree-like structure to make decisions.
-  - **Cost Function**: The cost function typically used is Gini Impurity or Entropy, which measures the purity of the split at each node.
-  - **Example**: Decision trees can classify network traffic as normal or suspicious by evaluating features like IP address, port number, and packet size.
-
-- **Random Forests**: 
-  - **When to Use**: Use random forests for a robust model that handles various features and data types with high accuracy.
-  - **How It Works**: This model combines multiple decision trees to make a final prediction, reducing the likelihood of errors.
-  - **Cost Function**: Similar to decision trees, Random Forests use Gini Impurity or Entropy for each tree in the forest.
-  - **Example**: Random forests can detect malware by examining attributes of executable files, such as file size, function calls, and code patterns.
-
-- **Support Vector Machines (SVM)**: 
-  - **When to Use**: Use SVMs for complex data and when you need a powerful model for high-dimensional spaces.
-  - **How It Works**: SVMs find the optimal boundary that separates different classes with the maximum margin.
-  - **Cost Function**: The cost function used is the Hinge Loss, which maximizes the margin between classes while minimizing classification errors.
-  - **Example**: SVMs can classify network intrusions by analyzing connection features like duration, protocol type, and service used.
-
-- **Neural Networks**: 
-  - **When to Use**: Use neural networks for large and complex datasets where traditional models may not perform well.
-  - **How It Works**: This model consists of layers of nodes that process data and learn to make predictions through multiple iterations.
-  - **Cost Function**: The cost function used is typically Cross-Entropy Loss for classification tasks, which measures the difference between the actual and predicted probabilities.
-  - **Example**: Neural networks can detect advanced threats by analyzing sequences of system calls in executable files to identify previously unknown vulnerabilities.
-
-#### Model Performance and Evaluation
-When selecting a model, consider the following performance metrics:
-- **Accuracy**: How often the model makes correct predictions.
-- **Precision**: How many of the predicted positive cases are actually positive.
-- **Recall**: How many of the actual positive cases are correctly identified by the model.
-- **F1 Score**: The balance between precision and recall.
-- **ROC-AUC**: The trade-off between true positive rate and false positive rate.
-
-In cybersecurity, it is crucial to achieve high recall to ensure that threats are not missed while maintaining a reasonable precision to avoid too many false alarms.
-
-By understanding these models, their cost functions, and their applications, business executives and technical professionals can make informed decisions about which machine learning techniques to implement in their cybersecurity strategies, ensuring their organizations are better protected against cyber threats.
