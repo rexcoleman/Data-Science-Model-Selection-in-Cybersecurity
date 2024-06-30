@@ -199,7 +199,7 @@ Reinforcement learning (RL) involves training an agent to make a sequence of dec
 
 **How It Works**: MAE measures the average absolute difference between the actual and predicted values.
 <p>MAE = (1/n) * Σ | y<sub>i</sub> - ŷ<sub>i</sub> |</p>
-<p>where \( y_i \) is the actual value and \( \hat{y}_i \) is the predicted value.</p>
+<p>where y<sub>i</sub> is the actual value and \( \hat{y}_i \) is the predicted value.</p>
 
 **Key Factors**: Minimizing MAE requires accurate predictions with smaller deviations from actual values. Unlike MSE, MAE is less sensitive to outliers, providing a straightforward error measure.
 
