@@ -92,6 +92,9 @@ Reinforcement learning (RL) involves training an agent to make a sequence of dec
 
 ## 2. Understanding Performance Metrics
 
+### Introduction to Performance Metrics
+Performance metrics are measures used to evaluate the effectiveness of a machine learning model. In cybersecurity, these metrics help us understand how well our models are performing in identifying threats, anomalies, or malicious activities. By using performance metrics, we can determine if our models are accurately detecting cyber threats or if they need further improvement.
+
 ### Accuracy
 **When to Use**: Use accuracy when the classes are balanced, meaning there are roughly equal numbers of positive and negative cases.
 
@@ -173,6 +176,9 @@ The F1 Score is high only when both precision and recall are high, making it sui
 A model with a high AUC means it is good at distinguishing between positive and negative classes across different threshold values. This is crucial for models that need to operate effectively at various sensitivity levels.
 
 ## 3. Understanding Cost Functions
+
+### Introduction to Cost Functions
+Cost functions, also known as loss functions, are used to optimize machine learning models during training. They measure how well the model's predictions match the actual outcomes. In cybersecurity, cost functions help us fine-tune our models to minimize errors, ensuring better detection and prevention of threats.
 
 ### Mean Squared Error (MSE)
 **Cybersecurity Use Case**: Predicting the number of future cyber attacks based on historical data. The goal is to have your predictions (ŷ<sub>i</sub>) as close as possible to the actual number of attacks (y<sub>i</sub>).
