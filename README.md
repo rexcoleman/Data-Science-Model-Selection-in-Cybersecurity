@@ -944,7 +944,7 @@ Anomaly detection models are used to identify unusual patterns or outliers in da
 ### Summary
 Understanding these key anomaly detection models and their applications in cybersecurity helps in selecting the right tool for identifying unusual patterns and potential threats. Each model has its strengths and is suited for different types of problems, from simple statistical deviations to complex patterns in high-dimensional data.
 
-### 4.6 Natural Language Processing
+## 4.6 Natural Language Processing
 
 ### Overview
 Natural Language Processing (NLP) involves the interaction between computers and human language. In cybersecurity, NLP can be applied to tasks such as analyzing security reports, detecting phishing emails, and monitoring social media for threat intelligence. By understanding and applying NLP models, we can enhance our ability to process and analyze large volumes of text data effectively.
@@ -959,6 +959,8 @@ Natural Language Processing (NLP) involves the interaction between computers and
 
 **How It Works**: Tokenization breaks down text into individual tokens (words, phrases, or sentences) that can be processed by NLP models.
 
+**Cost Function**: Tokenization does not use a traditional cost function but aims to optimize the splitting of text for further processing.
+
 **Example**: Tokenizing security incident reports to analyze the frequency of specific terms related to different types of attacks.
 
 ##### Stop Word Removal
@@ -966,12 +968,16 @@ Natural Language Processing (NLP) involves the interaction between computers and
 
 **How It Works**: The algorithm removes predefined stop words from the text, reducing noise and focusing on more meaningful terms.
 
+**Cost Function**: Stop word removal does not use a traditional cost function but aims to optimize the relevance of text features by eliminating non-informative words.
+
 **Example**: Removing stop words from email content to improve the accuracy of phishing detection models.
 
 ##### Stemming and Lemmatization
 **When to Use**: Use stemming and lemmatization to reduce words to their base or root form.
 
 **How It Works**: Stemming removes suffixes from words to obtain the root form, while lemmatization uses linguistic rules to find the base form.
+
+**Cost Function**: Stemming and lemmatization do not use traditional cost functions but aim to optimize the normalization of words for better text analysis.
 
 **Example**: Normalizing variations of the word "attack" (e.g., "attacking," "attacked") in threat reports to improve text analysis.
 
@@ -983,12 +989,16 @@ Natural Language Processing (NLP) involves the interaction between computers and
 
 **How It Works**: BoW represents text as a vector of word counts or frequencies, ignoring word order and context.
 
+**Cost Function**: BoW does not use a traditional cost function but aims to optimize the representation of text for further analysis.
+
 **Example**: Representing phishing emails as BoW vectors to classify them based on the frequency of suspicious words.
 
 ##### TF-IDF (Term Frequency-Inverse Document Frequency)
 **When to Use**: Use TF-IDF to highlight important words in a document by considering their frequency across multiple documents.
 
 **How It Works**: TF-IDF assigns higher weights to words that are frequent in a document but rare across the corpus.
+
+**Cost Function**: TF-IDF does not use a traditional cost function but aims to optimize the importance of words in the text representation.
 
 **Example**: Analyzing security logs to identify significant terms that appear frequently in specific incidents but are uncommon in general logs.
 
@@ -997,12 +1007,16 @@ Natural Language Processing (NLP) involves the interaction between computers and
 
 **How It Works**: Word embeddings map words to dense vectors of real numbers, where similar words have similar vectors.
 
+**Cost Function**: The cost function used is the Negative Log-Likelihood, which measures how well the predicted word vectors match the actual context.
+
 **Example**: Using Word2Vec to analyze security bulletins and identify related terms and concepts.
 
 ##### Document Embeddings (Doc2Vec)
 **When to Use**: Use Doc2Vec for creating vector representations of entire documents, capturing the context and meaning.
 
 **How It Works**: Doc2Vec extends Word2Vec to generate embeddings for documents instead of individual words.
+
+**Cost Function**: The cost function used is the Negative Log-Likelihood, similar to Word2Vec.
 
 **Example**: Clustering security incident reports based on their content using Doc2Vec embeddings to identify common types of incidents.
 
@@ -1014,12 +1028,16 @@ Natural Language Processing (NLP) involves the interaction between computers and
 
 **How It Works**: Naive Bayes applies Bayes' theorem with the assumption of independence between features to classify text.
 
+**Cost Function**: The cost function used is the Negative Log-Likelihood, which measures how well the predicted probabilities match the actual classes.
+
 **Example**: Classifying emails as spam or not spam based on the presence of specific keywords.
 
 ##### Support Vector Machines (SVM)
 **When to Use**: Use SVM for high-dimensional text classification tasks.
 
 **How It Works**: SVM finds the hyperplane that best separates different classes in the feature space.
+
+**Cost Function**: The cost function used is the Hinge Loss, which maximizes the margin between classes while minimizing classification errors.
 
 **Example**: Detecting phishing emails by classifying email content based on features extracted from the text.
 
@@ -1028,12 +1046,16 @@ Natural Language Processing (NLP) involves the interaction between computers and
 
 **How It Works**: Logistic regression models the probability of a binary outcome based on the input features.
 
+**Cost Function**: The cost function used is the Cross-Entropy Loss, which measures the difference between the actual and predicted probabilities.
+
 **Example**: Classifying security alerts as true positives or false positives based on textual descriptions.
 
 ##### Neural Networks (CNNs, RNNs)
 **When to Use**: Use neural networks for complex text classification tasks involving large datasets.
 
 **How It Works**: Neural networks, such as Convolutional Neural Networks (CNNs) and Recurrent Neural Networks (RNNs), capture hierarchical and sequential patterns in text data.
+
+**Cost Function**: The cost function used is typically Cross-Entropy Loss for classification tasks.
 
 **Example**: Classifying cyber threat intelligence reports into different threat categories using RNNs to capture sequential patterns in the text.
 
@@ -1045,6 +1067,8 @@ Natural Language Processing (NLP) involves the interaction between computers and
 
 **How It Works**: Rule-based NER uses handcrafted rules and patterns to identify entities in text.
 
+**Cost Function**: Rule-based NER does not use a traditional cost function but aims to optimize the accuracy of entity extraction using predefined rules.
+
 **Example**: Extracting IP addresses and domain names from network logs using regular expressions.
 
 ##### Machine Learning-Based NER
@@ -1052,12 +1076,16 @@ Natural Language Processing (NLP) involves the interaction between computers and
 
 **How It Works**: Machine learning-based NER models learn to identify entities from annotated training data.
 
+**Cost Function**: The cost function used is the Conditional Random Fields (CRF) loss, which measures the likelihood of the predicted entity labels given the input features.
+
 **Example**: Identifying malware names and version numbers in security reports using a trained NER model.
 
 ##### Deep Learning-Based NER
 **When to Use**: Use deep learning-based NER for high-accuracy entity recognition in large and complex datasets.
 
 **How It Works**: Deep learning-based NER models, such as BiLSTM-CRF, capture context and dependencies in text for accurate entity recognition.
+
+**Cost Function**: The cost function used is the Conditional Random Fields (CRF) loss, similar to machine learning-based NER.
 
 **Example**: Extracting threat actor names and attack techniques from cybersecurity threat intelligence feeds using a deep learning-based NER model.
 
@@ -1069,12 +1097,16 @@ Natural Language Processing (NLP) involves the interaction between computers and
 
 **How It Works**: LDA assumes that each document is a mixture of topics and each topic is a mixture of words. The algorithm assigns probabilities to words belonging to topics.
 
+**Cost Function**: The cost function used is the Log-Likelihood of the observed data given the topic distributions.
+
 **Example**: Analyzing threat intelligence reports to identify common themes and topics related to cyber threats.
 
 ##### Non-Negative Matrix Factorization (NMF)
 **When to Use**: Use NMF for topic modeling when you need a parts-based representation of the data.
 
 **How It Works**: NMF decomposes the document-term matrix into two lower-dimensional matrices, representing the documents and topics.
+
+**Cost Function**: The cost function used is the Frobenius Norm, which measures the difference between the original matrix and the product of the two lower-dimensional matrices.
 
 **Example**: Discovering prevalent topics in security blogs to understand the current trends and threats in the cybersecurity landscape.
 
@@ -1086,12 +1118,16 @@ Natural Language Processing (NLP) involves the interaction between computers and
 
 **How It Works**: SMT uses statistical models to predict the likelihood of a translation based on the frequencies of word alignments and sequences.
 
+**Cost Function**: The cost function used is the Negative Log-Likelihood, which measures how well the predicted translations match the actual translations.
+
 **Example**: Translating foreign-language threat intelligence reports into English to enable analysis by security teams.
 
 ##### Neural Machine Translation (NMT)
 **When to Use**: Use NMT for high-quality and context-aware translations.
 
 **How It Works**: NMT uses neural networks, particularly sequence-to-sequence models with attention mechanisms, to translate text.
+
+**Cost Function**: The cost function used is the Cross-Entropy Loss, which measures the difference between the predicted and actual translations.
 
 **Example**: Translating phishing emails written in different languages to detect and analyze multilingual phishing campaigns.
 
@@ -1103,12 +1139,16 @@ Natural Language Processing (NLP) involves the interaction between computers and
 
 **How It Works**: Rule-based sentiment analysis uses dictionaries of words annotated with their associated sentiments to analyze text.
 
+**Cost Function**: Rule-based sentiment analysis does not use a traditional cost function but aims to optimize the accuracy of sentiment detection using predefined rules.
+
 **Example**: Analyzing social media posts for negative sentiments related to a data breach incident.
 
 ##### Machine Learning-Based Sentiment Analysis
 **When to Use**: Use machine learning-based sentiment analysis for more nuanced and adaptable sentiment detection.
 
 **How It Works**: Machine learning models are trained on labeled datasets to classify text based on sentiment.
+
+**Cost Function**: The cost function used is the Cross-Entropy Loss, which measures the difference between the predicted and actual sentiment labels.
 
 **Example**: Classifying user feedback on security software into positive, negative, or neutral sentiments using a trained sentiment analysis model.
 
@@ -1117,12 +1157,14 @@ Natural Language Processing (NLP) involves the interaction between computers and
 
 **How It Works**: Deep learning models, such as CNNs and RNNs, learn to capture complex patterns and contexts in text for accurate sentiment classification.
 
+**Cost Function**: The cost function used is the Cross-Entropy Loss, similar to machine learning-based sentiment analysis.
+
 **Example**: Analyzing customer reviews of cybersecurity products to identify common issues and areas for improvement using a deep learning-based sentiment analysis model.
 
 ### Summary
 Understanding these key NLP models and their applications in cybersecurity helps in selecting the right tool for processing and analyzing text data. Each model has its strengths and is suited for different types of tasks, from text preprocessing to sentiment analysis, enhancing our ability to handle large volumes of unstructured data effectively.
 
-### 4.7 Time Series Analysis
+## 4.7 Time Series Analysis
 
 ### Overview
 Time series analysis involves analyzing data points collected or recorded at specific time intervals to identify patterns, trends, and seasonal variations. In cybersecurity, time series analysis can be applied to tasks such as monitoring network traffic, detecting anomalies in system logs, and forecasting the occurrence of cyber attacks. By understanding and applying these models, we can enhance our ability to make informed decisions based on temporal data.
@@ -1137,6 +1179,8 @@ Time series analysis involves analyzing data points collected or recorded at spe
 
 **How It Works**: ARIMA combines autoregression (AR), differencing (I), and moving average (MA) to model the data. The AR part models the relationship between an observation and a number of lagged observations, the I part makes the data stationary, and the MA part models the relationship between an observation and a lagged error term.
 
+**Cost Function**: The cost function used in ARIMA is typically the Sum of Squared Errors (SSE) between the predicted and actual values.
+
 **Example**: Forecasting the volume of network traffic to predict peak usage times and potential bottlenecks.
 
 ##### Seasonal ARIMA (SARIMA)
@@ -1144,12 +1188,16 @@ Time series analysis involves analyzing data points collected or recorded at spe
 
 **How It Works**: SARIMA extends ARIMA by including seasonal components, allowing it to model both non-seasonal and seasonal data.
 
+**Cost Function**: Similar to ARIMA, SARIMA uses the Sum of Squared Errors (SSE) between the predicted and actual values.
+
 **Example**: Predicting the frequency of phishing attacks, which may have seasonal peaks during certain times of the year.
 
 ##### Exponential Smoothing (ETS)
 **When to Use**: Use ETS for time series data that exhibit trends and seasonal variations.
 
 **How It Works**: ETS models the data by combining exponential smoothing of the level, trend, and seasonal components.
+
+**Cost Function**: The cost function used in ETS is the Sum of Squared Errors (SSE) between the smoothed and actual values.
 
 **Example**: Monitoring and forecasting the occurrence of security incidents over time to allocate resources effectively.
 
@@ -1161,12 +1209,16 @@ Time series analysis involves analyzing data points collected or recorded at spe
 
 **How It Works**: SVR applies the principles of Support Vector Machines (SVM) to regression, capturing complex patterns in the data.
 
+**Cost Function**: The cost function used in SVR is the epsilon-insensitive loss function, which only penalizes errors larger than a certain threshold (epsilon).
+
 **Example**: Forecasting the number of daily security alerts to ensure sufficient staffing for incident response.
 
 ##### Decision Trees and Random Forests
 **When to Use**: Use decision trees and random forests for non-linear time series forecasting.
 
 **How It Works**: Decision trees model the data by splitting it into branches based on feature values, while random forests combine multiple decision trees to improve accuracy and robustness.
+
+**Cost Function**: The cost function used in decision trees is the Mean Squared Error (MSE) between the predicted and actual values. Random forests aggregate this cost over multiple trees.
 
 **Example**: Predicting the number of cyber attacks based on historical data and external factors such as public holidays or major events.
 
@@ -1175,12 +1227,16 @@ Time series analysis involves analyzing data points collected or recorded at spe
 
 **How It Works**: GBM builds an ensemble of weak learners (typically decision trees) sequentially, where each new tree corrects the errors of the previous ones.
 
+**Cost Function**: The cost function used in GBM is the Mean Squared Error (MSE) between the predicted and actual values.
+
 **Example**: Forecasting the volume of spam emails to adjust spam filter thresholds dynamically.
 
 ##### Recurrent Neural Networks (RNNs) and Long Short-Term Memory (LSTM)
 **When to Use**: Use RNNs and LSTMs for time series data with long-term dependencies and sequential patterns.
 
 **How It Works**: RNNs and LSTMs are types of neural networks designed to handle sequential data, capturing dependencies and patterns over time.
+
+**Cost Function**: The cost function used in RNNs and LSTMs is typically the Mean Squared Error (MSE) between the predicted and actual values.
 
 **Example**: Detecting anomalous sequences in system logs that may indicate a security breach.
 
@@ -1192,12 +1248,16 @@ Time series analysis involves analyzing data points collected or recorded at spe
 
 **How It Works**: STL decomposes the time series into seasonal, trend, and residual components using locally estimated scatterplot smoothing (Loess).
 
+**Cost Function**: STL does not have a traditional cost function but aims to minimize the residual component after removing the seasonal and trend components.
+
 **Example**: Analyzing the trend and seasonal patterns in firewall log data to identify periods of high activity and potential threats.
 
 ##### Classical Decomposition
 **When to Use**: Use classical decomposition for simpler time series with additive or multiplicative components.
 
 **How It Works**: Classical decomposition splits the time series into trend, seasonal, and residual components using moving averages.
+
+**Cost Function**: Similar to STL, classical decomposition does not use a traditional cost function but focuses on minimizing the residual component.
 
 **Example**: Decomposing the time series of malware detection counts to understand underlying trends and seasonal effects.
 
@@ -1209,12 +1269,16 @@ Time series analysis involves analyzing data points collected or recorded at spe
 
 **How It Works**: The Kalman filter recursively estimates the state of a dynamic system from noisy observations, making it suitable for real-time applications.
 
+**Cost Function**: The cost function used in the Kalman filter is the Mean Squared Error (MSE) between the predicted state and the observed data.
+
 **Example**: Monitoring network traffic in real-time to detect sudden changes that may indicate a security incident.
 
 ##### Dynamic Linear Models (DLM)
 **When to Use**: Use DLMs for modeling time series data with dynamic relationships between variables.
 
 **How It Works**: DLMs use state-space representations to model time-varying relationships between the observed data and underlying state variables.
+
+**Cost Function**: The cost function used in DLMs is the Mean Squared Error (MSE) between the predicted state and the observed data.
 
 **Example**: Forecasting the impact of new security policies on the number of detected threats over time.
 
@@ -1226,6 +1290,8 @@ Time series analysis involves analyzing data points collected or recorded at spe
 
 **How It Works**: The Fourier transform decomposes the time series into a sum of sine and cosine functions with different frequencies.
 
+**Cost Function**: Spectral analysis typically does not use a traditional cost function but aims to identify dominant frequencies in the data.
+
 **Example**: Identifying periodic patterns in network traffic data to detect recurring security threats.
 
 ##### Wavelet Transform
@@ -1233,10 +1299,13 @@ Time series analysis involves analyzing data points collected or recorded at spe
 
 **How It Works**: The wavelet transform decomposes the time series into wavelets, capturing both time and frequency information.
 
+**Cost Function**: Similar to Fourier transform, wavelet transform focuses on identifying significant components in the time-frequency domain rather than using a traditional cost function.
+
 **Example**: Detecting transient anomalies in system logs that may indicate short-lived security events.
 
 ### Summary
 Understanding these key time series analysis models and their applications in cybersecurity helps in selecting the right tool for analyzing temporal data and making informed decisions. Each model has its strengths and is suited for different types of problems, from simple trend analysis to complex forecasting and anomaly detection in high-dimensional data.
+
 
 ### 4.8 Recommendation Systems
 
