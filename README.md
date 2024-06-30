@@ -179,22 +179,23 @@ A model with a high AUC means it is good at distinguishing between positive and 
 
 **Cybersecurity Use Case**: Predicting the number of future cyber attacks based on historical data.
 
-**How It Works**: MSE measures the average squared difference between the actual and predicted values.
+**How It Works**: MSE measures the average squared difference between the actual values (y<sub>i</sub>) and the predicted values (ŷ<sub>i</sub>).
 <p>MSE = (1/n) * Σ(y<sub>i</sub> - ŷ<sub>i</sub>)<sup>2</sup></p>
 where y<sub>i</sub> is the actual value and ŷ<sub>i</sub> is the predicted value.
 
-**Key Factors**: Minimizing MSE requires accurate predictions that are close to the actual values. Squaring the errors penalizes larger errors more, making the model sensitive to outliers. 
+**Key Factors**: Minimizing MSE requires accurate predictions that are close to the actual values. Squaring the errors penalizes larger errors more, making the model sensitive to outliers.
 
 **Example Explanation**: 
-If you predict the number of attacks per month as 10, 20, 30, and the actual numbers are 12, 18, 33:
+If you predict the number of cyber attacks per month as 10, 20, 30, and the actual numbers are 12, 18, 33:
 <p>MSE = (1/3) * [(12-10)<sup>2</sup> + (18-20)<sup>2</sup> + (33-30)<sup>2</sup>] = (1/3) * [4 + 4 + 9] = 5.67</p>
+A lower MSE indicates a better fit of the model to the data.
 
 ### Cross-Entropy Loss
 **When to Use**: Use Cross-Entropy Loss in classification tasks to measure the difference between the actual and predicted probability distributions.
 
 **Cybersecurity Use Case**: Classifying emails as phishing or not phishing.
 
-**How It Works**: Cross-Entropy Loss calculates the difference between the actual label and the predicted probability.
+**How It Works**: Cross-Entropy Loss calculates the difference between the actual label (y<sub>i</sub>) and the predicted probability (ŷ<sub>i</sub>).
 <p>Cross-Entropy Loss = - (1/n) * Σ [ y<sub>i</sub> log(ŷ<sub>i</sub>) + (1 - y<sub>i</sub>) log(1 - ŷ<sub>i</sub>) ]</p>
 where y<sub>i</sub> is the actual label (0 or 1) and ŷ<sub>i</sub> is the predicted probability.
 
@@ -203,13 +204,14 @@ where y<sub>i</sub> is the actual label (0 or 1) and ŷ<sub>i</sub> is the predi
 **Example Explanation**: 
 If your model predicts probabilities of an email being phishing as 0.8 (true label 1), 0.4 (true label 0), the Cross-Entropy Loss is:
 <p>Cross-Entropy Loss = - (1/2) * [1 * log(0.8) + 0 * log(0.6) + 1 * log(0.4) + 0 * log(0.6)] = 0.51</p>
+A lower cross-entropy loss indicates better performance.
 
 ### Hinge Loss
 **When to Use**: Use Hinge Loss for training Support Vector Machines (SVMs).
 
 **Cybersecurity Use Case**: Classifying network traffic as normal or suspicious.
 
-**How It Works**: Hinge Loss measures the margin between the actual class and the predicted class.
+**How It Works**: Hinge Loss measures the margin between the actual class (y<sub>i</sub>) and the predicted class (ŷ<sub>i</sub>).
 <p>Hinge Loss = (1/n) * Σ max(0, 1 - y<sub>i</sub> * ŷ<sub>i</sub>)</p>
 where y<sub>i</sub> is the actual label (-1 or 1) and ŷ<sub>i</sub> is the predicted value.
 
@@ -218,6 +220,7 @@ where y<sub>i</sub> is the actual label (-1 or 1) and ŷ<sub>i</sub> is the pred
 **Example Explanation**: 
 If you have predictions 0.9, -0.7 for actual labels 1, -1 respectively, Hinge Loss is:
 <p>Hinge Loss = (1/2) * [max(0, 1 - 1 * 0.9) + max(0, 1 - (-1) * (-0.7))] = 0.2</p>
+A lower hinge loss indicates better performance.
 
 ### Gini Impurity and Entropy
 **When to Use**: Use Gini Impurity and Entropy in decision trees to measure the purity of a split.
@@ -225,26 +228,28 @@ If you have predictions 0.9, -0.7 for actual labels 1, -1 respectively, Hinge Lo
 **Cybersecurity Use Case**: Detecting anomalies in user behavior by classifying activities as normal or abnormal.
 
 **How It Works**: 
-- **Gini Impurity** measures the likelihood of incorrect classification of a randomly chosen element.
+- **Gini Impurity** measures how often a randomly chosen element would be incorrectly classified.
   <p>Gini Impurity = 1 - Σ p<sub>i</sub><sup>2</sup></p>
   where p<sub>i</sub> is the probability of class i.
-- **Entropy** measures the uncertainty in the dataset.
+  
+- **Entropy** measures the uncertainty or disorder in the dataset.
   <p>Entropy = - Σ p<sub>i</sub> log(p<sub>i</sub>)</p>
   where p<sub>i</sub> is the probability of class i.
 
-**Key Factors**: Lower Gini Impurity and Entropy values indicate a more homogeneous node, leading to better classification performance. 
+**Key Factors**: Lower Gini Impurity and Entropy values indicate a more homogeneous node, leading to better classification performance.
 
 **Example Explanation**: 
 For a node with 10 normal and 30 abnormal activities:
 <p>Gini Impurity = 1 - [(10/40)<sup>2</sup> + (30/40)<sup>2</sup>] = 0.375</p>
 <p>Entropy = -[(10/40) log(10/40) + (30/40) log(30/40)] ≈ 0.81</p>
+Lower impurity or entropy means the data at that node is more pure, helping the tree make better decisions.
 
 ### Mean Absolute Error (MAE)
 **When to Use**: Use MAE in regression tasks where you need an easily interpretable measure of prediction errors.
 
 **Cybersecurity Use Case**: Estimating the time to resolve a security incident based on historical resolution times.
 
-**How It Works**: MAE measures the average absolute difference between the actual and predicted values.
+**How It Works**: MAE measures the average absolute difference between the actual values (y<sub>i</sub>) and the predicted values (ŷ<sub>i</sub>).
 <p>MAE = (1/n) * Σ | y<sub>i</sub> - ŷ<sub>i</sub> |</p>
 where y<sub>i</sub> is the actual value and ŷ<sub>i</sub> is the predicted value.
 
@@ -253,3 +258,4 @@ where y<sub>i</sub> is the actual value and ŷ<sub>i</sub> is the predicted valu
 **Example Explanation**: 
 If the actual resolution times are 5, 10, 15 hours and predicted are 6, 9, 14 hours:
 <p>MAE = (1/3) * [|5-6| + |10-9| + |15-14|] = 1</p>
+A lower MAE indicates better predictive performance.
