@@ -98,7 +98,7 @@ Reinforcement learning (RL) involves training an agent to make a sequence of dec
 **Cybersecurity Use Case**: In a scenario where you are classifying emails as spam or not spam, and you have a balanced dataset of spam and non-spam emails, accuracy can give a good indication of your model's performance.
 
 **How It Works**: Accuracy is calculated as the number of correct predictions divided by the total number of predictions.
-\[ \text{Accuracy} = \frac{\text{True Positives} + \text{True Negatives}}{\text{Total Predictions}} \]
+<p>Accuracy = (True Positives + True Negatives) / Total Predictions</p>
 
 **Key Factors**: High accuracy requires both true positives and true negatives to be high. It doesn't account for class imbalance, so in cybersecurity, ensure your dataset is balanced before relying on accuracy.
 
@@ -108,7 +108,7 @@ Reinforcement learning (RL) involves training an agent to make a sequence of dec
 **Cybersecurity Use Case**: Detecting phishing emails where a false positive (legitimate email marked as phishing) can disrupt business operations.
 
 **How It Works**: Precision is the number of true positive predictions divided by the total number of positive predictions.
-\[ \text{Precision} = \frac{\text{True Positives}}{\text{True Positives} + \text{False Positives}} \]
+<p>Precision = True Positives / (True Positives + False Positives)</p>
 
 **Key Factors**: High precision requires minimizing false positives. This means being very certain about a prediction before classifying it as positive, which might lower recall.
 
@@ -118,7 +118,7 @@ Reinforcement learning (RL) involves training an agent to make a sequence of dec
 **Cybersecurity Use Case**: Detecting malware where missing a malware instance (false negative) can lead to a severe security breach.
 
 **How It Works**: Recall is the number of true positive predictions divided by the total number of actual positives.
-\[ \text{Recall} = \frac{\text{True Positives}}{\text{True Positives} + \text{False Negatives}} \]
+<p>Recall = True Positives / (True Positives + False Negatives)</p>
 
 **Key Factors**: High recall requires minimizing false negatives. This means identifying as many positive cases as possible, even if it increases false positives, which might lower precision.
 
@@ -128,7 +128,7 @@ Reinforcement learning (RL) involves training an agent to make a sequence of dec
 **Cybersecurity Use Case**: General threat detection systems where both false positives and false negatives have significant consequences.
 
 **How It Works**: The F1 Score is the harmonic mean of precision and recall.
-\[ \text{F1 Score} = 2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}} \]
+<p>F1 Score = 2 * (Precision * Recall) / (Precision + Recall)</p>
 
 **Key Factors**: The F1 Score balances precision and recall. It is high only when both precision and recall are high, making it suitable for evaluating models on imbalanced datasets.
 
@@ -138,7 +138,7 @@ Reinforcement learning (RL) involves training an agent to make a sequence of dec
 **Cybersecurity Use Case**: Evaluating the performance of an intrusion detection system where you need to understand the trade-off between true positive and false positive rates at various thresholds.
 
 **How It Works**: The ROC curve plots the true positive rate against the false positive rate at various threshold settings. AUC (Area Under the Curve) measures the entire two-dimensional area underneath the entire ROC curve.
-\[ \text{AUC} = \int_0^1 \text{ROC}(t) \, dt \]
+<p>AUC = ∫<sub>0</sub><sup>1</sup> ROC(t) dt</p>
 
 **Key Factors**: High ROC-AUC indicates that the model performs well across all thresholds. It is less sensitive to class imbalance and provides a single measure to compare models.
 
@@ -150,7 +150,7 @@ Reinforcement learning (RL) involves training an agent to make a sequence of dec
 **Cybersecurity Use Case**: Predicting the number of future cyber attacks based on historical data.
 
 **How It Works**: MSE measures the average squared difference between the actual and predicted values.
-$$ \text{MSE} = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2 $$
+<p>MSE = (1/n) * Σ(y<sub>i</sub> - ŷ<sub>i</sub>)<sup>2</sup></p>
 where \( y_i \) is the actual value and \( \hat{y}_i \) is the predicted value.
 
 **Key Factors**: Minimizing MSE requires accurate predictions that are close to the actual values. Squaring the errors penalizes larger errors more, making the model sensitive to outliers.
@@ -161,7 +161,7 @@ where \( y_i \) is the actual value and \( \hat{y}_i \) is the predicted value.
 **Cybersecurity Use Case**: Classifying emails as phishing or not phishing.
 
 **How It Works**: Cross-Entropy Loss calculates the difference between the actual label and the predicted probability.
-$$ \text{Cross-Entropy Loss} = - \frac{1}{n} \sum_{i=1}^{n} \left[ y_i \log(\hat{y}_i) + (1 - y_i) \log(1 - \hat{y}_i) \right] $$
+<p>Cross-Entropy Loss = - (1/n) * Σ [ y<sub>i</sub> log(ŷ<sub>i</sub>) + (1 - y<sub>i</sub>) log(1 - ŷ<sub>i</sub>) ]</p>
 where \( y_i \) is the actual label (0 or 1) and \( \hat{y}_i \) is the predicted probability.
 
 **Key Factors**: Minimizing Cross-Entropy Loss requires the predicted probabilities to be close to the actual labels. This ensures that the model is confident and correct in its predictions.
@@ -172,7 +172,7 @@ where \( y_i \) is the actual label (0 or 1) and \( \hat{y}_i \) is the predicte
 **Cybersecurity Use Case**: Classifying network traffic as normal or suspicious.
 
 **How It Works**: Hinge Loss measures the margin between the actual class and the predicted class.
-$$ \text{Hinge Loss} = \frac{1}{n} \sum_{i=1}^{n} \max(0, 1 - y_i \cdot \hat{y}_i) $$
+<p>Hinge Loss = (1/n) * Σ max(0, 1 - y<sub>i</sub> * ŷ<sub>i</sub>)</p>
 where \( y_i \) is the actual label (-1 or 1) and \( \hat{y}_i \) is the predicted value.
 
 **Key Factors**: Minimizing Hinge Loss requires maximizing the margin between classes while correctly classifying the data points. It ensures that the decision boundary is as far as possible from the closest data points of each class.
@@ -184,10 +184,10 @@ where \( y_i \) is the actual label (-1 or 1) and \( \hat{y}_i \) is the predict
 
 **How It Works**: 
 - **Gini Impurity** measures the likelihood of incorrect classification of a randomly chosen element.
-  $$ \text{Gini Impurity} = 1 - \sum_{i=1}^{C} p_i^2 $$
+  <p>Gini Impurity = 1 - Σ p<sub>i</sub><sup>2</sup></p>
   where \( p_i \) is the probability of class \( i \).
 - **Entropy** measures the uncertainty in the dataset.
-  $$ \text{Entropy} = - \sum_{i=1}^{C} p_i \log(p_i) $$
+  <p>Entropy = - Σ p<sub>i</sub> log(p<sub>i</sub>)</p>
   where \( p_i \) is the probability of class \( i \).
 
 **Key Factors**: Lower Gini Impurity and Entropy values indicate a more homogeneous node, leading to better classification performance. Decision trees aim to split the data to minimize these values.
@@ -198,14 +198,58 @@ where \( y_i \) is the actual label (-1 or 1) and \( \hat{y}_i \) is the predict
 **Cybersecurity Use Case**: Estimating the time to resolve a security incident based on historical resolution times.
 
 **How It Works**: MAE measures the average absolute difference between the actual and predicted values.
-$$ \text{MAE} = \frac{1}{n} \sum_{i=1}^{n} | y_i - \hat{y}_i | $$
+<p>MAE = (1/n) * Σ | y<sub>i</sub> - ŷ<sub>i</sub> |</p>
 where \( y_i \) is the actual value and \( \hat{y}_i \) is the predicted value.
 
 **Key Factors**: Minimizing MAE requires accurate predictions with smaller deviations from actual values. Unlike MSE, MAE is less sensitive to outliers, providing a straightforward error measure.
 
+## 4. Universe of Problems Machine Learning Models Solve
 
+### 4.1 Classification
 
+#### Overview
+In cybersecurity, one critical task is distinguishing between legitimate and malicious activities. For example, imagine you need to protect your email system from phishing attacks. The goal is to identify and block phishing emails while allowing legitimate ones through. This task of sorting emails into 'phishing' and 'not phishing' categories is called classification. Classification helps us make decisions based on patterns learned from data, such as distinguishing between different types of cyber threats.
 
+#### Key Models
 
-<p>MSE = (1/n) * Σ(y<sub>i</sub> - ŷ<sub>i</sub>)<sup>2</sup></p>
+- **Logistic Regression**: 
+  - **When to Use**: Use logistic regression for straightforward, binary decisions, like detecting phishing emails.
+  - **How It Works**: This model calculates the probability that an email is phishing based on its characteristics. If the probability is high, the email is classified as phishing.
+  - **Cost Function**: The cost function used is Cross-Entropy Loss, which measures the difference between the actual and predicted probabilities.
+  - **Example**: Logistic regression can analyze features like suspicious links, email content, and sender information to filter out phishing emails.
 
+- **Decision Trees**: 
+  - **When to Use**: Use decision trees when you need a model that is easy to visualize and interpret, especially for straightforward decision-making processes.
+  - **How It Works**: The model splits data into branches based on feature values, forming a tree-like structure to make decisions.
+  - **Cost Function**: The cost function typically used is Gini Impurity or Entropy, which measures the purity of the split at each node.
+  - **Example**: Decision trees can classify network traffic as normal or suspicious by evaluating features like IP address, port number, and packet size.
+
+- **Random Forests**: 
+  - **When to Use**: Use random forests for a robust model that handles various features and data types with high accuracy.
+  - **How It Works**: This model combines multiple decision trees to make a final prediction, reducing the likelihood of errors.
+  - **Cost Function**: Similar to decision trees, Random Forests use Gini Impurity or Entropy for each tree in the forest.
+  - **Example**: Random forests can detect malware by examining attributes of executable files, such as file size, function calls, and code patterns.
+
+- **Support Vector Machines (SVM)**: 
+  - **When to Use**: Use SVMs for complex data and when you need a powerful model for high-dimensional spaces.
+  - **How It Works**: SVMs find the optimal boundary that separates different classes with the maximum margin.
+  - **Cost Function**: The cost function used is the Hinge Loss, which maximizes the margin between classes while minimizing classification errors.
+  - **Example**: SVMs can classify network intrusions by analyzing connection features like duration, protocol type, and service used.
+
+- **Neural Networks**: 
+  - **When to Use**: Use neural networks for large and complex datasets where traditional models may not perform well.
+  - **How It Works**: This model consists of layers of nodes that process data and learn to make predictions through multiple iterations.
+  - **Cost Function**: The cost function used is typically Cross-Entropy Loss for classification tasks, which measures the difference between the actual and predicted probabilities.
+  - **Example**: Neural networks can detect advanced threats by analyzing sequences of system calls in executable files to identify previously unknown vulnerabilities.
+
+#### Model Performance and Evaluation
+When selecting a model, consider the following performance metrics:
+- **Accuracy**: How often the model makes correct predictions.
+- **Precision**: How many of the predicted positive cases are actually positive.
+- **Recall**: How many of the actual positive cases are correctly identified by the model.
+- **F1 Score**: The balance between precision and recall.
+- **ROC-AUC**: The trade-off between true positive rate and false positive rate.
+
+In cybersecurity, it is crucial to achieve high recall to ensure that threats are not missed while maintaining a reasonable precision to avoid too many false alarms.
+
+By understanding these models, their cost functions, and their applications, business executives and technical professionals can make informed decisions about which machine learning techniques to implement in their cybersecurity strategies, ensuring their organizations are better protected against cyber threats.
