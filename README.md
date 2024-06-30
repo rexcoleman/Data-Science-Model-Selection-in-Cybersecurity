@@ -175,31 +175,31 @@ A model with a high AUC means it is good at distinguishing between positive and 
 ## 3. Understanding Cost Functions
 
 ### Mean Squared Error (MSE)
-**When to Use**: Use MSE in regression tasks where the goal is to predict continuous outcomes.
+**Cybersecurity Use Case**: Predicting the number of future cyber attacks based on historical data. The goal is to have your predictions (ŷ<sub>i</sub>) as close as possible to the actual number of attacks (y<sub>i</sub>).
 
-**Cybersecurity Use Case**: Predicting the number of future cyber attacks based on historical data.
+**When to Use**: Use MSE in regression tasks where the goal is to predict continuous outcomes.
 
 **How It Works**: MSE measures the average squared difference between the actual values (y<sub>i</sub>) and the predicted values (ŷ<sub>i</sub>).
 <p>MSE = (1/n) * Σ(y<sub>i</sub> - ŷ<sub>i</sub>)<sup>2</sup></p>
 where y<sub>i</sub> is the actual value and ŷ<sub>i</sub> is the predicted value.
 
-**Key Factors**: Minimizing MSE requires accurate predictions that are close to the actual values. Squaring the errors penalizes larger errors more, making the model sensitive to outliers.
+**Key Factors**: Minimizing MSE means making your predictions as close as possible to the actual values. Squaring the errors penalizes larger errors more, making the model sensitive to outliers.
 
 **Example Explanation**: 
 If you predict the number of cyber attacks per month as 10, 20, 30, and the actual numbers are 12, 18, 33:
 <p>MSE = (1/3) * [(12-10)<sup>2</sup> + (18-20)<sup>2</sup> + (33-30)<sup>2</sup>] = (1/3) * [4 + 4 + 9] = 5.67</p>
-A lower MSE indicates a better fit of the model to the data.
+A lower MSE indicates your predictions are closer to the actual values.
 
 ### Cross-Entropy Loss
-**When to Use**: Use Cross-Entropy Loss in classification tasks to measure the difference between the actual and predicted probability distributions.
+**Cybersecurity Use Case**: Classifying emails as phishing or not phishing. The goal is to have the predicted probability (ŷ<sub>i</sub>) of an email being phishing to be as close as possible to the actual label (y<sub>i</sub>), which is 1 for phishing and 0 for not phishing.
 
-**Cybersecurity Use Case**: Classifying emails as phishing or not phishing.
+**When to Use**: Use Cross-Entropy Loss in classification tasks to measure the difference between the actual and predicted probability distributions.
 
 **How It Works**: Cross-Entropy Loss calculates the difference between the actual label (y<sub>i</sub>) and the predicted probability (ŷ<sub>i</sub>).
 <p>Cross-Entropy Loss = - (1/n) * Σ [ y<sub>i</sub> log(ŷ<sub>i</sub>) + (1 - y<sub>i</sub>) log(1 - ŷ<sub>i</sub>) ]</p>
 where y<sub>i</sub> is the actual label (0 or 1) and ŷ<sub>i</sub> is the predicted probability.
 
-**Key Factors**: Minimizing Cross-Entropy Loss requires the predicted probabilities to be close to the actual labels. This ensures that the model is confident and correct in its predictions.
+**Key Factors**: Minimizing Cross-Entropy Loss means the predicted probabilities are close to the actual labels. This ensures the model is confident and correct in its predictions.
 
 **Example Explanation**: 
 If your model predicts probabilities of an email being phishing as 0.8 (true label 1), 0.4 (true label 0), the Cross-Entropy Loss is:
@@ -207,15 +207,15 @@ If your model predicts probabilities of an email being phishing as 0.8 (true lab
 A lower cross-entropy loss indicates better performance.
 
 ### Hinge Loss
-**When to Use**: Use Hinge Loss for training Support Vector Machines (SVMs).
+**Cybersecurity Use Case**: Classifying network traffic as normal or suspicious. The goal is to maximize the margin between the predicted class (ŷ<sub>i</sub>) and the actual class (y<sub>i</sub>), ensuring the correct classification of network activities.
 
-**Cybersecurity Use Case**: Classifying network traffic as normal or suspicious.
+**When to Use**: Use Hinge Loss for training Support Vector Machines (SVMs).
 
 **How It Works**: Hinge Loss measures the margin between the actual class (y<sub>i</sub>) and the predicted class (ŷ<sub>i</sub>).
 <p>Hinge Loss = (1/n) * Σ max(0, 1 - y<sub>i</sub> * ŷ<sub>i</sub>)</p>
 where y<sub>i</sub> is the actual label (-1 or 1) and ŷ<sub>i</sub> is the predicted value.
 
-**Key Factors**: Minimizing Hinge Loss requires maximizing the margin between classes while correctly classifying the data points. 
+**Key Factors**: Minimizing Hinge Loss means maximizing the margin between classes while correctly classifying the data points. 
 
 **Example Explanation**: 
 If you have predictions 0.9, -0.7 for actual labels 1, -1 respectively, Hinge Loss is:
@@ -223,9 +223,9 @@ If you have predictions 0.9, -0.7 for actual labels 1, -1 respectively, Hinge Lo
 A lower hinge loss indicates better performance.
 
 ### Gini Impurity and Entropy
-**When to Use**: Use Gini Impurity and Entropy in decision trees to measure the purity of a split.
+**Cybersecurity Use Case**: Detecting anomalies in user behavior by classifying activities as normal or abnormal. The goal is to have a clear split in the decision tree, where nodes are as pure as possible, meaning each node contains mostly one class.
 
-**Cybersecurity Use Case**: Detecting anomalies in user behavior by classifying activities as normal or abnormal.
+**When to Use**: Use Gini Impurity and Entropy in decision trees to measure the purity of a split.
 
 **How It Works**: 
 - **Gini Impurity** measures how often a randomly chosen element would be incorrectly classified.
@@ -245,17 +245,17 @@ For a node with 10 normal and 30 abnormal activities:
 Lower impurity or entropy means the data at that node is more pure, helping the tree make better decisions.
 
 ### Mean Absolute Error (MAE)
-**When to Use**: Use MAE in regression tasks where you need an easily interpretable measure of prediction errors.
+**Cybersecurity Use Case**: Estimating the time to resolve a security incident based on historical resolution times. The goal is to have the predicted resolution times (ŷ<sub>i</sub>) as close as possible to the actual resolution times (y<sub>i</sub>).
 
-**Cybersecurity Use Case**: Estimating the time to resolve a security incident based on historical resolution times.
+**When to Use**: Use MAE in regression tasks where you need an easily interpretable measure of prediction errors.
 
 **How It Works**: MAE measures the average absolute difference between the actual values (y<sub>i</sub>) and the predicted values (ŷ<sub>i</sub>).
 <p>MAE = (1/n) * Σ | y<sub>i</sub> - ŷ<sub>i</sub> |</p>
 where y<sub>i</sub> is the actual value and ŷ<sub>i</sub> is the predicted value.
 
-**Key Factors**: Minimizing MAE requires accurate predictions with smaller deviations from actual values. 
+**Key Factors**: Minimizing MAE means making your predictions as close as possible to the actual values.
 
 **Example Explanation**: 
 If the actual resolution times are 5, 10, 15 hours and predicted are 6, 9, 14 hours:
 <p>MAE = (1/3) * [|5-6| + |10-9| + |15-14|] = 1</p>
-A lower MAE indicates better predictive performance.
+A lower MAE indicates your predictions are closer to the actual values.
