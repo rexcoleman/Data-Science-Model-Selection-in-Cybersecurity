@@ -202,3 +202,11 @@ $$ \text{MAE} = \frac{1}{n} \sum_{i=1}^{n} | y_i - \hat{y}_i | $$
 where \( y_i \) is the actual value and \( \hat{y}_i \) is the predicted value.
 
 **Key Factors**: Minimizing MAE requires accurate predictions with smaller deviations from actual values. Unlike MSE, MAE is less sensitive to outliers, providing a straightforward error measure.
+
+
+
+
+
+<p>
+\[ \text{Accuracy} = \frac{\text{True Positives} + \text{True Negatives}}{\text{Total Predictions}} \]
+</p>
