@@ -211,3 +211,6 @@ where \( y_i \) is the actual value and \( \hat{y}_i \) is the predicted value.
 <p>
 \[ \text{Accuracy} = \frac{\text{True Positives} + \text{True Negatives}}{\text{Total Predictions}} \]
 </p>
+
+<p>MSE = (1/n) * Σ(y<sub>i</sub> - ŷ<sub>i</sub>)<sup>2</sup></p>
+
