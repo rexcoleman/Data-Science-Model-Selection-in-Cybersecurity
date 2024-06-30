@@ -312,3 +312,303 @@ where y<sub>i</sub> is the actual value and ŷ<sub>i</sub> is the predicted valu
 If the actual resolution times are 5, 10, 15 hours and predicted are 6, 9, 14 hours:
 <p>MAE = (1/3) * [|5-6| + |10-9| + |15-14|] = 1</p>
 A lower MAE indicates your predictions are closer to the actual values.
+
+## 4. Universe of Problems Machine Learning Models Solve
+
+### 4.1 Classification
+
+### Overview
+In cybersecurity, one critical task is distinguishing between legitimate and malicious activities. For example, imagine you need to protect your email system from phishing attacks. The goal is to identify and block phishing emails while allowing legitimate ones through. This task of sorting emails into 'phishing' and 'not phishing' categories is called classification. Classification helps us make decisions based on patterns learned from data, such as distinguishing between different types of cyber threats.
+
+### Categories of Classification Models
+
+#### 1. Linear Models
+**Definition**: Linear models are simple yet powerful models that make predictions based on a linear relationship between the input features and the output. These models are effective for binary classification tasks and are easy to interpret.
+
+##### Logistic Regression
+**When to Use**: Use logistic regression for straightforward, binary decisions, like detecting phishing emails.
+
+**How It Works**: This model calculates the probability that an email is phishing based on its characteristics. If the probability is high, the email is classified as phishing.
+
+**Cost Function**: The cost function used is Cross-Entropy Loss, which measures the difference between the actual and predicted probabilities.
+
+**Example**: Logistic regression can analyze features like suspicious links, email content, and sender information to filter out phishing emails. For instance, if an email contains a suspicious link and urgent language, the model might assign it a high probability of being phishing.
+
+#### 2. Tree-Based Models
+**Definition**: Tree-based models use a tree-like structure to make decisions based on feature values. These models are highly interpretable and can handle both numerical and categorical data effectively.
+
+##### Decision Trees
+**When to Use**: Use decision trees when you need a model that is easy to visualize and interpret, especially for straightforward decision-making processes.
+
+**How It Works**: The model splits data into branches based on feature values, forming a tree-like structure to make decisions.
+
+**Cost Function**: The cost function typically used is Gini Impurity or Entropy, which measures the purity of the split at each node.
+
+**Example**: Decision trees can classify network traffic as normal or suspicious by evaluating features like IP address, port number, and packet size. For example, traffic from an unknown IP address accessing multiple ports might be flagged as suspicious.
+
+##### Random Forests
+**When to Use**: Use random forests for a robust model that handles various features and data types with high accuracy.
+
+**How It Works**: This model combines multiple decision trees to make a final prediction, reducing the likelihood of errors.
+
+**Cost Function**: Similar to decision trees, Random Forests use Gini Impurity or Entropy for each tree in the forest.
+
+**Example**: Random forests can detect malware by examining attributes of executable files, such as file size, function calls, and code patterns. For example, if multiple trees agree that certain file characteristics are indicative of malware, the file is flagged for further inspection.
+
+##### Decision Forests
+**When to Use**: Use decision forests for large datasets and when you need an ensemble method to improve prediction accuracy.
+
+**How It Works**: Decision forests aggregate predictions from multiple decision trees to improve overall accuracy and robustness.
+
+**Cost Function**: Decision forests typically use Gini Impurity or Entropy, similar to individual decision trees.
+
+**Example**: Decision forests can classify network traffic by combining predictions from multiple decision trees, resulting in more accurate detection of suspicious activities.
+
+#### 3. Ensemble Methods
+**Definition**: Ensemble methods combine multiple models to improve overall performance. These methods reduce the risk of overfitting and enhance the accuracy and robustness of predictions.
+
+##### Gradient Boosting Machines (GBM)
+**When to Use**: Use GBM for high-accuracy classification tasks where you can afford longer training times.
+
+**How It Works**: GBM builds an ensemble of decision trees sequentially, where each tree corrects the errors of the previous one.
+
+**Cost Function**: The cost function used is often Log-Loss for classification tasks, which measures the accuracy of the predicted probabilities.
+
+**Example**: GBM can be used for detecting fraudulent transactions by analyzing various features such as transaction amount, location, and time, and improving the prediction iteratively.
+
+##### XGBoost
+**When to Use**: Use XGBoost when you need a highly efficient and scalable implementation of gradient boosting.
+
+**How It Works**: XGBoost improves on traditional GBM by optimizing both the training speed and model performance using advanced regularization techniques.
+
+**Cost Function**: Similar to GBM, XGBoost uses Log-Loss for classification tasks.
+
+**Example**: XGBoost can be used for intrusion detection by analyzing network traffic data and identifying patterns that indicate potential intrusions.
+
+##### LightGBM
+**When to Use**: Use LightGBM for large datasets and when you need faster training times than traditional gradient boosting methods.
+
+**How It Works**: LightGBM builds decision trees using a leaf-wise growth strategy, which reduces the training time and improves accuracy.
+
+**Cost Function**: LightGBM typically uses Log-Loss for classification tasks.
+
+**Example**: LightGBM can classify malicious URLs by analyzing various features such as URL length, presence of suspicious words, and domain age.
+
+##### CatBoost
+**When to Use**: Use CatBoost for handling categorical features effectively and when you need an easy-to-use gradient boosting model.
+
+**How It Works**: CatBoost builds decision trees while automatically handling categorical features, reducing the need for extensive preprocessing.
+
+**Cost Function**: CatBoost uses Log-Loss for classification tasks, optimizing the accuracy of predicted probabilities.
+
+**Example**: CatBoost can classify phishing websites by analyzing categorical features such as domain name, hosting provider, and URL structure.
+
+##### AdaBoost
+**When to Use**: Use AdaBoost for improving the performance of weak classifiers and when you need a simple and effective boosting technique.
+
+**How It Works**: AdaBoost combines multiple weak classifiers, typically decision trees with one level, to create a strong classifier. It adjusts the weights of incorrectly classified instances so that subsequent classifiers focus more on these difficult cases.
+
+**Cost Function**: The cost function used in AdaBoost is the Exponential Loss, which emphasizes misclassified instances.
+
+**Example**: AdaBoost can be used to detect email phishing attempts by combining several simple decision trees that focus on different aspects of the email content, such as links, language, and sender information. Each subsequent tree pays more attention to the emails that were misclassified by previous trees.
+
+#### 4. Distance-Based Models
+**Definition**: Distance-based models classify data points based on their distance to other points. These models are intuitive and work well for small to medium-sized datasets with clear distance metrics.
+
+##### K-Nearest Neighbors (KNN)
+**When to Use**: Use KNN for simple, instance-based learning tasks where the decision boundaries are non-linear.
+
+**How It Works**: KNN classifies a data point based on the majority class of its k-nearest neighbors in the feature space.
+
+**Cost Function**: KNN does not use a traditional cost function but relies on distance metrics like Euclidean distance to determine nearest neighbors.
+
+**Example**: KNN can be used to classify whether a network connection is normal or anomalous by comparing it to past connections and seeing if similar connections were normal or suspicious.
+
+#### 5. Bayesian Models
+**Definition**: Bayesian models apply Bayes' theorem to predict the probability of different outcomes. These models are particularly useful for handling uncertainty and incorporating prior knowledge.
+
+##### Naive Bayes
+**When to Use**: Use Naive Bayes for classification tasks with independent features, particularly when you need a simple and fast model.
+
+**How It Works**: Naive Bayes calculates the probability of each class based on the input features and selects the class with the highest probability.
+
+**Cost Function**: The cost function used is the Negative Log-Likelihood, which measures how well the predicted probabilities match the actual classes.
+
+**Example**: Naive Bayes can classify spam emails by calculating the probability of an email being spam based on the presence of certain words or phrases commonly found in spam emails.
+
+#### 6. Neural Networks
+**Definition**: Neural networks are complex models inspired by the human brain. They consist of layers of interconnected nodes (neurons) that process data and learn to make predictions through multiple iterations. These models are highly flexible and capable of capturing complex patterns in data.
+
+##### Neural Networks
+**When to Use**: Use neural networks for large and complex datasets where traditional models may not perform well.
+
+**How It Works**: This model consists of layers of nodes that process data and learn to make predictions through multiple iterations.
+
+**Cost Function**: The cost function used is typically Cross-Entropy Loss for classification tasks, which measures the difference between the actual and predicted probabilities.
+
+**Example**: Neural networks can detect advanced threats by analyzing sequences of system calls in executable files to identify previously unknown vulnerabilities. For example, a neural network might learn to recognize a pattern of system calls that indicate a new type of malware.
+
+### Summary
+Understanding these key classification models and their applications in cybersecurity helps in selecting the right tool for the task. Each model has its strengths and is suited for different types of problems, from straightforward binary decisions to complex pattern recognition in large datasets.
+
+## 4.2 Regression
+
+### Overview
+Regression models are used to predict continuous outcomes based on input features. In cybersecurity, regression models can be utilized for tasks such as predicting the time to resolve security incidents, estimating the potential financial impact of a security breach, or forecasting the number of future cyber attacks. By understanding and applying regression models, we can make more informed decisions and better manage security risks.
+
+### Categories of Regression Models
+
+#### 1. Linear Regression Models
+**Definition**: Linear regression models predict a continuous outcome based on the linear relationship between the input features and the target variable. These models are simple, interpretable, and effective for many regression tasks.
+
+##### Simple Linear Regression
+**When to Use**: Use simple linear regression for predicting a continuous outcome based on a single input feature.
+
+**How It Works**: This model fits a straight line to the data that best represents the relationship between the input feature and the target variable.
+
+**Cost Function**: The cost function used is Mean Squared Error (MSE), which measures the average squared difference between the actual and predicted values.
+
+**Example**: Predicting the time to resolve a security incident based on the number of affected systems. The model learns the relationship between the number of affected systems and the resolution time to make predictions for new incidents.
+
+##### Multiple Linear Regression
+**When to Use**: Use multiple linear regression for predicting a continuous outcome based on multiple input features.
+
+**How It Works**: This model extends simple linear regression by fitting a hyperplane to the data that best represents the relationship between multiple input features and the target variable.
+
+**Cost Function**: The cost function used is Mean Squared Error (MSE), similar to simple linear regression.
+
+**Example**: Predicting the financial impact of a security breach based on features such as the number of affected systems, data sensitivity, and the response time. The model learns the relationship between these features and the financial impact to make accurate predictions.
+
+#### 2. Polynomial Regression
+**Definition**: Polynomial regression models capture the relationship between the input features and the target variable as a polynomial equation. These models are useful for capturing non-linear relationships.
+
+##### Polynomial Regression
+**When to Use**: Use polynomial regression for predicting a continuous outcome when the relationship between the input features and the target variable is non-linear.
+
+**How It Works**: This model fits a polynomial equation to the data that best represents the relationship between the input features and the target variable.
+
+**Cost Function**: The cost function used is Mean Squared Error (MSE).
+
+**Example**: Predicting the growth of cyber attacks over time based on historical data. The model can capture the accelerating growth rate of attacks over time.
+
+#### 3. Tree-Based Regression Models
+**Definition**: Tree-based regression models use a tree-like structure to make predictions based on feature values. These models can capture non-linear relationships and interactions between features.
+
+##### Decision Tree Regression
+**When to Use**: Use decision tree regression for tasks that require capturing non-linear relationships and interactions between features.
+
+**How It Works**: The model splits data into branches based on feature values, forming a tree-like structure to make predictions.
+
+**Cost Function**: The cost function typically used is Mean Squared Error (MSE) or Mean Absolute Error (MAE).
+
+**Example**: Predicting the duration of a security incident based on features like the type of incident, number of affected systems, and response measures. The model learns how different combinations of features affect the incident duration.
+
+##### Random Forest Regression
+**When to Use**: Use random forest regression for robust and accurate predictions, especially when dealing with complex data.
+
+**How It Works**: This model combines multiple decision trees to make a final prediction, reducing the likelihood of overfitting and improving accuracy.
+
+**Cost Function**: Similar to decision tree regression, Random Forest Regression uses Mean Squared Error (MSE) or Mean Absolute Error (MAE).
+
+**Example**: Estimating the potential damage of a cyber attack by analyzing features such as attack vector, target industry, and previous incident data. The model aggregates predictions from multiple trees to provide a more accurate estimate.
+
+#### 4. Ensemble Regression Models
+**Definition**: Ensemble regression models combine multiple models to improve overall performance. These methods enhance the accuracy and robustness of predictions by leveraging the strengths of individual models.
+
+##### Gradient Boosting Regression
+**When to Use**: Use gradient boosting regression for high-accuracy tasks where you can afford longer training times.
+
+**How It Works**: Gradient boosting builds an ensemble of decision trees sequentially, where each tree corrects the errors of the previous one.
+
+**Cost Function**: The cost function used is often Mean Squared Error (MSE) or Mean Absolute Error (MAE).
+
+**Example**: Forecasting the number of future cyber attacks by analyzing historical attack data, industry trends, and threat intelligence. The model iteratively improves its predictions by learning from past errors.
+
+##### XGBoost Regression
+**When to Use**: Use XGBoost regression when you need a highly efficient and scalable implementation of gradient boosting.
+
+**How It Works**: XGBoost improves on traditional gradient boosting by optimizing both the training speed and model performance using advanced regularization techniques.
+
+**Cost Function**: Similar to gradient boosting, XGBoost uses Mean Squared Error (MSE) or Mean Absolute Error (MAE).
+
+**Example**: Predicting the likelihood of a data breach in the next quarter by analyzing features such as current security measures, industry threats, and historical breach data. XGBoost efficiently processes the data to provide accurate predictions.
+
+##### LightGBM Regression
+**When to Use**: Use LightGBM regression for large datasets and when you need faster training times than traditional gradient boosting methods.
+
+**How It Works**: LightGBM builds decision trees using a leaf-wise growth strategy, which reduces the training time and improves accuracy.
+
+**Cost Function**: LightGBM typically uses Mean Squared Error (MSE) or Mean Absolute Error (MAE).
+
+**Example**: Estimating the response time required to mitigate a new type of cyber threat based on historical incident response data and threat characteristics. LightGBM provides quick and accurate predictions, enabling faster decision-making.
+
+##### CatBoost Regression
+**When to Use**: Use CatBoost regression for handling categorical features effectively and when you need an easy-to-use gradient boosting model.
+
+**How It Works**: CatBoost builds decision trees while automatically handling categorical features, reducing the need for extensive preprocessing.
+
+**Cost Function**: CatBoost uses Mean Squared Error (MSE) or Mean Absolute Error (MAE) for regression tasks.
+
+**Example**: Predicting the cost of a data breach by analyzing features such as the type of data compromised, industry regulations, and incident response measures. CatBoost processes categorical features like industry type seamlessly to provide accurate predictions.
+
+#### 5. Support Vector Regression
+**Definition**: Support Vector Regression (SVR) is an extension of Support Vector Machines (SVM) for regression tasks. SVR is effective for high-dimensional data and can capture complex relationships.
+
+##### Support Vector Regression (SVR)
+**When to Use**: Use SVR for tasks that require capturing complex relationships in high-dimensional data.
+
+**How It Works**: SVR finds the best-fit line within a threshold value that predicts the continuous target variable while maximizing the margin between the predicted values and the actual values.
+
+**Cost Function**: The cost function used is the epsilon-insensitive loss function, which ignores errors within a certain margin.
+
+**Example**: Predicting the severity of a cyber attack by analyzing features such as attack type, target infrastructure, and detected vulnerabilities. SVR captures the complex relationships between these features to provide accurate severity predictions.
+
+#### 6. Neural Network Regression
+**Definition**: Neural network regression models are complex models that consist of multiple layers of interconnected nodes (neurons). These models are capable of capturing intricate patterns in data and are highly flexible.
+
+##### Neural Network Regression
+**When to Use**: Use neural network regression for large and complex datasets where traditional models may not perform well.
+
+**How It Works**: This model consists of layers of nodes that process data and learn to make predictions through multiple iterations.
+
+**Cost Function**: The cost function used is typically Mean Squared Error (MSE) or Mean Absolute Error (MAE).
+
+**Example**: Forecasting the potential financial impact of a future cyber attack by analyzing a wide range of features, including historical attack data, industry trends, and current security measures. Neural networks can process complex interactions between these features to provide accurate forecasts.
+
+#### 7. Bayesian Regression Models
+**Definition**: Bayesian regression models incorporate Bayesian inference, providing a probabilistic approach to regression tasks. These models are particularly useful for handling uncertainty and incorporating prior knowledge.
+
+##### Bayesian Linear Regression
+**When to Use**: Use Bayesian linear regression when you need to incorporate prior knowledge and quantify uncertainty in predictions.
+
+**How It Works**: This model applies Bayesian inference to linear regression, updating the probability distribution of the model parameters based on the observed data.
+
+**Cost Function**: The cost function used is the Negative Log-Likelihood, which measures how well the predicted probabilities match the actual outcomes.
+
+**Example**: Estimating the potential impact of a security vulnerability by incorporating prior knowledge about similar vulnerabilities and updating predictions based on new data.
+
+#### 8. Regularized Regression Models
+**Definition**: Regularized regression models add a penalty term to the cost function to prevent overfitting and improve generalization. These models are useful for dealing with high-dimensional data and multicollinearity.
+
+##### Ridge Regression (L2 Regularization)
+**When to Use**: Use ridge regression when you have high-dimensional data and need to prevent overfitting.
+
+**How It Works**: This model adds a penalty term proportional to the square of the magnitude of the coefficients to the cost function.
+
+**Cost Function**: The cost function used is Mean Squared Error (MSE) with an L2 regularization term.
+
+**Example**: Predicting the likelihood of a data breach based on a large number of features, such as security measures, industry trends, and historical breaches. Ridge regression helps prevent overfitting by penalizing large coefficients.
+
+##### Lasso Regression (L1 Regularization)
+**When to Use**: Use lasso regression when you need feature selection along with regularization.
+
+**How It Works**: This model adds a penalty term proportional to the absolute value of the coefficients to the cost function, which can shrink some coefficients to zero.
+
+**Cost Function**: The cost function used is Mean Squared Error (MSE) with an L1 regularization term.
+
+**Example**: Identifying the most important factors contributing to the severity of a cyber attack by selecting a subset of relevant features from a large set of potential factors. Lasso regression helps by shrinking irrelevant feature coefficients to zero.
+
+### Summary
+Understanding these key regression models and their applications in cybersecurity helps in selecting the right tool for predicting continuous outcomes. Each model has its strengths and is suited for different types of problems, from simple linear relationships to complex pattern recognition in large datasets.
+
+
