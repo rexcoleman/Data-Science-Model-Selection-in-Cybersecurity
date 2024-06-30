@@ -150,7 +150,7 @@ Reinforcement learning (RL) involves training an agent to make a sequence of dec
 **Cybersecurity Use Case**: Predicting the number of future cyber attacks based on historical data.
 
 **How It Works**: MSE measures the average squared difference between the actual and predicted values.
-\[ \text{MSE} = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2 \]
+$$ \text{MSE} = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2 $$
 where \( y_i \) is the actual value and \( \hat{y}_i \) is the predicted value.
 
 **Key Factors**: Minimizing MSE requires accurate predictions that are close to the actual values. Squaring the errors penalizes larger errors more, making the model sensitive to outliers.
@@ -161,7 +161,7 @@ where \( y_i \) is the actual value and \( \hat{y}_i \) is the predicted value.
 **Cybersecurity Use Case**: Classifying emails as phishing or not phishing.
 
 **How It Works**: Cross-Entropy Loss calculates the difference between the actual label and the predicted probability.
-\[ \text{Cross-Entropy Loss} = - \frac{1}{n} \sum_{i=1}^{n} \left[ y_i \log(\hat{y}_i) + (1 - y_i) \log(1 - \hat{y}_i) \right] \]
+$$ \text{Cross-Entropy Loss} = - \frac{1}{n} \sum_{i=1}^{n} \left[ y_i \log(\hat{y}_i) + (1 - y_i) \log(1 - \hat{y}_i) \right] $$
 where \( y_i \) is the actual label (0 or 1) and \( \hat{y}_i \) is the predicted probability.
 
 **Key Factors**: Minimizing Cross-Entropy Loss requires the predicted probabilities to be close to the actual labels. This ensures that the model is confident and correct in its predictions.
@@ -172,7 +172,7 @@ where \( y_i \) is the actual label (0 or 1) and \( \hat{y}_i \) is the predicte
 **Cybersecurity Use Case**: Classifying network traffic as normal or suspicious.
 
 **How It Works**: Hinge Loss measures the margin between the actual class and the predicted class.
-\[ \text{Hinge Loss} = \frac{1}{n} \sum_{i=1}^{n} \max(0, 1 - y_i \cdot \hat{y}_i) \]
+$$ \text{Hinge Loss} = \frac{1}{n} \sum_{i=1}^{n} \max(0, 1 - y_i \cdot \hat{y}_i) $$
 where \( y_i \) is the actual label (-1 or 1) and \( \hat{y}_i \) is the predicted value.
 
 **Key Factors**: Minimizing Hinge Loss requires maximizing the margin between classes while correctly classifying the data points. It ensures that the decision boundary is as far as possible from the closest data points of each class.
@@ -184,10 +184,10 @@ where \( y_i \) is the actual label (-1 or 1) and \( \hat{y}_i \) is the predict
 
 **How It Works**: 
 - **Gini Impurity** measures the likelihood of incorrect classification of a randomly chosen element.
-  \[ \text{Gini Impurity} = 1 - \sum_{i=1}^{C} p_i^2 \]
+  $$ \text{Gini Impurity} = 1 - \sum_{i=1}^{C} p_i^2 $$
   where \( p_i \) is the probability of class \( i \).
 - **Entropy** measures the uncertainty in the dataset.
-  \[ \text{Entropy} = - \sum_{i=1}^{C} p_i \log(p_i) \]
+  $$ \text{Entropy} = - \sum_{i=1}^{C} p_i \log(p_i) $$
   where \( p_i \) is the probability of class \( i \).
 
 **Key Factors**: Lower Gini Impurity and Entropy values indicate a more homogeneous node, leading to better classification performance. Decision trees aim to split the data to minimize these values.
@@ -198,7 +198,7 @@ where \( y_i \) is the actual label (-1 or 1) and \( \hat{y}_i \) is the predict
 **Cybersecurity Use Case**: Estimating the time to resolve a security incident based on historical resolution times.
 
 **How It Works**: MAE measures the average absolute difference between the actual and predicted values.
-\[ \text{MAE} = \frac{1}{n} \sum_{i=1}^{n} | y_i - \hat{y}_i | \]
+$$ \text{MAE} = \frac{1}{n} \sum_{i=1}^{n} | y_i - \hat{y}_i | $$
 where \( y_i \) is the actual value and \( \hat{y}_i \) is the predicted value.
 
 **Key Factors**: Minimizing MAE requires accurate predictions with smaller deviations from actual values. Unlike MSE, MAE is less sensitive to outliers, providing a straightforward error measure.
