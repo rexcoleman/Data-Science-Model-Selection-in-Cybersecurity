@@ -223,4 +223,5 @@ $$ \text{MSE} = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2 $$
 </p>
 
 
+![MSE Formula](https://latex.codecogs.com/png.latex?\text{MSE}=\frac{1}{n}\sum_{i=1}^{n}(y_i-\hat{y}_i)^2)
 
