@@ -705,7 +705,7 @@ Clustering models are used to group similar data points together based on their 
 ### Summary
 Understanding these key clustering models and their applications in cybersecurity helps in selecting the right tool for grouping similar data points and identifying anomalies. Each model has its strengths and is suited for different types of problems, from detecting irregular patterns in network traffic to segmenting different types of cyber threats.
 
-### 4.4 Dimensionality Reduction
+## 4.4 Dimensionality Reduction
 
 ### Overview
 Dimensionality reduction techniques are used to reduce the number of input features in a dataset while retaining as much information as possible. In cybersecurity, dimensionality reduction can help simplify complex datasets, improve the performance of machine learning models, and visualize high-dimensional data. By understanding and applying these techniques, we can make more efficient and effective use of our data.
@@ -720,6 +720,8 @@ Dimensionality reduction techniques are used to reduce the number of input featu
 
 **How It Works**: PCA projects the data onto a new set of axes (principal components) that capture the maximum variance in the data. The first principal component captures the most variance, followed by the second, and so on.
 
+**Cost Function**: The cost function used is the reconstruction error, which measures the difference between the original data and the data reconstructed from the principal components.
+
 **Example**: Reducing the dimensionality of network traffic data to identify the most significant patterns. PCA can help simplify the data, making it easier to detect anomalies and visualize traffic patterns.
 
 ##### Linear Discriminant Analysis (LDA)
@@ -727,12 +729,16 @@ Dimensionality reduction techniques are used to reduce the number of input featu
 
 **How It Works**: LDA projects the data onto a lower-dimensional space that maximizes the separation between different classes.
 
+**Cost Function**: The cost function used is the ratio of the between-class variance to the within-class variance, which LDA maximizes.
+
 **Example**: Reducing the dimensionality of malware detection features to improve classification accuracy. LDA can help identify the most discriminative features for distinguishing between different types of malware.
 
 ##### Recursive Feature Elimination (RFE)
 **When to Use**: Use RFE when you need to select the most important features for a given model.
 
 **How It Works**: RFE recursively removes the least important features and builds the model repeatedly until the desired number of features is reached.
+
+**Cost Function**: The cost function used is based on the performance of the model with different subsets of features, typically evaluated using a metric like accuracy or mean squared error.
 
 **Example**: Selecting the most relevant features for predicting the likelihood of a data breach. RFE can help identify the key factors that contribute to security incidents, improving model performance and interpretability.
 
@@ -744,12 +750,16 @@ Dimensionality reduction techniques are used to reduce the number of input featu
 
 **How It Works**: SVD decomposes a matrix into three matrices: U, Σ, and V, where Σ contains the singular values representing the importance of each dimension.
 
+**Cost Function**: The cost function used is the Frobenius norm of the difference between the original matrix and the product of the decomposed matrices.
+
 **Example**: Reducing the dimensionality of a user-item interaction matrix to identify latent factors in user behavior. SVD can help uncover hidden patterns in user interactions, such as common attack vectors or preferences.
 
 ##### Non-Negative Matrix Factorization (NMF)
 **When to Use**: Use NMF when you need a parts-based representation of the data, especially when the data is non-negative.
 
 **How It Works**: NMF decomposes the original matrix into two lower-dimensional matrices with non-negative elements, making the components easier to interpret.
+
+**Cost Function**: The cost function used is the Frobenius norm of the difference between the original matrix and the product of the decomposed matrices, constrained to non-negative elements.
 
 **Example**: Analyzing the frequency of different types of cyber attacks in various regions. NMF can help identify common attack patterns and their prevalence across different locations.
 
@@ -761,12 +771,16 @@ Dimensionality reduction techniques are used to reduce the number of input featu
 
 **How It Works**: t-SNE minimizes the divergence between probability distributions over pairs of points in the high-dimensional and low-dimensional spaces, preserving local structures.
 
+**Cost Function**: The cost function used is the Kullback-Leibler divergence between the joint probabilities of the high-dimensional and low-dimensional data.
+
 **Example**: Visualizing high-dimensional cybersecurity data to identify clusters of similar attacks. t-SNE can help reveal hidden patterns and relationships in the data, aiding in threat detection and analysis.
 
 ##### Isomap
 **When to Use**: Use Isomap for capturing the global structure of non-linear manifolds in high-dimensional data.
 
 **How It Works**: Isomap extends Multi-Dimensional Scaling (MDS) by preserving geodesic distances between all pairs of data points on the manifold.
+
+**Cost Function**: The cost function used is the residual variance, which measures the difference between the geodesic distances in the high-dimensional space and the Euclidean distances in the low-dimensional space.
 
 **Example**: Analyzing network traffic to identify complex patterns of communication. Isomap can help uncover the global structure of the data, revealing underlying trends and anomalies.
 
@@ -775,46 +789,47 @@ Dimensionality reduction techniques are used to reduce the number of input featu
 
 **How It Works**: LLE maps the high-dimensional data to a lower-dimensional space by preserving the local linear relationships between data points.
 
+**Cost Function**: The cost function used is the reconstruction error, which measures how well the local linear relationships are preserved in the low-dimensional space.
+
 **Example**: Detecting subtle anomalies in system logs by analyzing local patterns of behavior. LLE can help highlight deviations from normal activity, improving anomaly detection capabilities.
 
 #### 4. Autoencoders
-**Definition**: Autoencoders are a type of neural network used for unsupervised learning. They encode the input data into a compressed representation and then decode it back to the original input. These models are effective for reducing the dimensionality of complex data.
+**Definition**: Autoencoders are neural network-based models used for unsupervised learning of efficient codings of data. They consist of an encoder that compresses the data into a lower-dimensional representation and a decoder that reconstructs the original data from the compressed representation.
 
-##### Autoencoders
-**When to Use**: Use autoencoders for reducing the dimensionality of high-dimensional data, especially when the data has complex, non-linear relationships.
+##### Basic Autoencoder
+**When to Use**: Use basic autoencoders for reducing dimensionality and learning efficient data representations.
 
-**How It Works**: Autoencoders consist of an encoder that compresses the input data into a lower-dimensional representation and a decoder that reconstructs the input data from this representation. The model is trained to minimize the reconstruction error.
+**How It Works**: The encoder compresses the input data into a lower-dimensional code, and the decoder reconstructs the original data from this code.
 
-**Example**: Reducing the dimensionality of system logs to detect anomalies. Autoencoders can learn normal patterns of behavior and identify deviations that may indicate a security threat.
+**Cost Function**: The cost function used is the reconstruction error, typically measured by Mean Squared Error (MSE) between the input and reconstructed data.
 
-##### Variational Autoencoders (VAE)
-**When to Use**: Use VAEs when you need a probabilistic approach to dimensionality reduction and want to generate new data points.
+**Example**: Reducing the dimensionality of network traffic data to identify significant patterns. Autoencoders can learn compact representations of normal traffic, making it easier to detect anomalies.
 
-**How It Works**: VAEs encode the input data into a distribution over the latent space and then decode it to reconstruct the data. The model is trained to maximize the likelihood of the observed data while ensuring the latent space follows a predefined distribution (e.g., Gaussian).
+##### Variational Autoencoder (VAE)
+**When to Use**: Use VAEs for probabilistic modeling and generating new data points similar to the training data.
 
-**Example**: Generating synthetic network traffic data for testing and validation. VAEs can learn the distribution of normal traffic patterns and generate new samples that can be used to evaluate detection systems.
+**How It Works**: VAEs encode the input data into a probability distribution in the latent space and sample from this distribution to reconstruct the data.
 
-#### 5. Feature Embedding
-**Definition**: Feature embedding techniques transform high-dimensional data into a lower-dimensional space where similar data points are closer together. These techniques are widely used in natural language processing and other domains.
+**Cost Function**: The cost function used is the sum of the reconstruction error and the Kullback-Leibler divergence between the learned latent distribution and a prior distribution.
 
-##### Word2Vec
-**When to Use**: Use Word2Vec for creating vector representations of words in a lower-dimensional space, capturing semantic relationships between words.
+**Example**: Analyzing malware behavior by learning a compact representation of known malware and generating new, similar behaviors for further analysis.
 
-**How It Works**: Word2Vec uses neural networks to learn the vector representations of words based on their context in a corpus. The resulting vectors capture the semantic similarity between words.
+#### 5. Independent Component Analysis (ICA)
+**Definition**: ICA is a computational technique for separating a multivariate signal into additive, independent non-Gaussian components. It is widely used in signal processing and data analysis.
 
-**Example**: Analyzing security logs to identify patterns in command-line activity. Word2Vec can create embeddings of command-line commands, allowing for the detection of unusual sequences that may indicate malicious activity.
+##### Independent Component Analysis (ICA)
+**When to Use**: Use ICA for separating mixed signals into their independent sources.
 
-##### Doc2Vec
-**When to Use**: Use Doc2Vec for creating vector representations of documents, capturing the semantic relationships between documents.
+**How It Works**: ICA maximizes the statistical independence of the estimated components.
 
-**How It Works**: Doc2Vec extends Word2Vec by learning vector representations for entire documents instead of just words. The model captures the context and meaning of the documents in the embedding space.
+**Cost Function**: The cost function used is the negentropy, which measures the deviation of the estimated components from Gaussianity.
 
-**Example**: Categorizing incident reports based on their content. Doc2Vec can create embeddings of incident reports, allowing for clustering and classification of similar incidents.
+**Example**: Separating mixed network traffic data into individual sources to identify specific types of activities or attacks. ICA can help isolate the contributions of different devices or users to the overall traffic.
 
 ### Summary
 Understanding these key dimensionality reduction techniques and their applications in cybersecurity helps in selecting the right tool for simplifying complex datasets and improving model performance. Each technique has its strengths and is suited for different types of problems, from feature selection to uncovering non-linear relationships in high-dimensional data.
 
-### 4.5 Anomaly Detection
+## 4.5 Anomaly Detection
 
 ### Overview
 Anomaly detection models are used to identify unusual patterns or outliers in data that do not conform to expected behavior. In cybersecurity, anomaly detection is crucial for identifying potential threats, such as unusual login attempts, unexpected network traffic patterns, or deviations in system behavior. By understanding and applying these models, we can enhance our ability to detect and respond to security incidents effectively.
@@ -829,12 +844,16 @@ Anomaly detection models are used to identify unusual patterns or outliers in da
 
 **How It Works**: The Z-Score measures the number of standard deviations a data point is from the mean of the distribution. Data points with Z-Scores beyond a certain threshold are considered anomalies.
 
+**Cost Function**: The cost function for Z-Score anomaly detection is typically the number of standard deviations (Z) from the mean. Data points with Z-Scores above a certain threshold (e.g., 3) are flagged as anomalies.
+
 **Example**: Detecting unusually high network traffic volumes that may indicate a denial-of-service attack. Z-Score can identify traffic patterns that deviate significantly from normal volumes.
 
 ##### Gaussian Mixture Model (GMM)
 **When to Use**: Use GMM when you need to model data that can be represented by a mixture of multiple Gaussian distributions.
 
 **How It Works**: GMM uses the Expectation-Maximization (EM) algorithm to estimate the parameters of the Gaussian distributions and identify data points that do not fit well within these distributions.
+
+**Cost Function**: The cost function for GMM is the Log-Likelihood of the data given the estimated parameters of the Gaussian distributions. Points with low likelihoods are considered anomalies.
 
 **Example**: Identifying unusual user behaviors based on login times, locations, and activity patterns. GMM can model normal behaviors and flag deviations as potential threats.
 
@@ -846,12 +865,16 @@ Anomaly detection models are used to identify unusual patterns or outliers in da
 
 **How It Works**: The algorithm calculates the distance between each data point and its k-nearest neighbors. Data points with distances greater than a certain threshold are considered anomalies.
 
+**Cost Function**: The cost function for KNN is the distance metric used (e.g., Euclidean distance). Points with high average distances to their nearest neighbors are flagged as anomalies.
+
 **Example**: Detecting unusual login attempts based on the time, location, and device used. KNN can identify login attempts that are significantly different from typical user behavior.
 
 ##### Local Outlier Factor (LOF)
 **When to Use**: Use LOF when you need to detect local anomalies in a dataset with varying density.
 
 **How It Works**: LOF measures the local density deviation of a data point compared to its neighbors. Points with significantly lower density than their neighbors are considered anomalies.
+
+**Cost Function**: The cost function for LOF is the local density measure. Points with low local density compared to their neighbors have high LOF scores and are flagged as anomalies.
 
 **Example**: Identifying anomalous network traffic patterns in a densely monitored environment. LOF can detect unusual traffic that stands out from normal, dense traffic patterns.
 
@@ -863,12 +886,16 @@ Anomaly detection models are used to identify unusual patterns or outliers in da
 
 **How It Works**: DBSCAN groups closely packed points into clusters and marks points in low-density regions as noise (anomalies).
 
+**Cost Function**: DBSCAN does not use a traditional cost function but relies on two parameters: epsilon (the maximum distance between points) and minPts (the minimum number of points required to form a cluster). Points not fitting these criteria are considered anomalies.
+
 **Example**: Detecting anomalous network traffic sessions that do not fit into any known patterns. DBSCAN can identify sessions that are different from typical traffic clusters.
 
 ##### K-Means Clustering for Anomaly Detection
 **When to Use**: Use K-Means when you need a simple clustering approach to detect anomalies as points that are far from any cluster centroids.
 
 **How It Works**: The algorithm assigns data points to clusters based on their distance to the nearest centroid. Points with high distances to their assigned centroids are considered anomalies.
+
+**Cost Function**: The cost function for K-Means is the sum of squared distances from each point to its assigned centroid. Points with large distances are flagged as anomalies.
 
 **Example**: Identifying unusual transactions in financial data. K-Means can cluster normal transactions and flag those that are far from the cluster centroids as potential fraud.
 
@@ -880,12 +907,16 @@ Anomaly detection models are used to identify unusual patterns or outliers in da
 
 **How It Works**: One-Class SVM learns a decision function that classifies new data points as similar or different from the normal training data.
 
+**Cost Function**: The cost function for One-Class SVM is the Hinge Loss, which aims to separate normal data from anomalies by a maximum margin.
+
 **Example**: Detecting unusual activity in system logs. One-Class SVM can learn from normal log entries and identify entries that do not match the normal pattern as anomalies.
 
 ##### Isolation Forest
 **When to Use**: Use Isolation Forest when you need an efficient and scalable method for detecting anomalies in large datasets.
 
 **How It Works**: Isolation Forest isolates observations by randomly selecting a feature and splitting the data. Anomalies are isolated quickly because they are few and different.
+
+**Cost Function**: The cost function for Isolation Forest is the number of splits required to isolate a point. Points that require fewer splits are considered anomalies.
 
 **Example**: Identifying anomalous network connections in a large-scale environment. Isolation Forest can quickly and effectively isolate connections that deviate from the norm.
 
@@ -897,6 +928,8 @@ Anomaly detection models are used to identify unusual patterns or outliers in da
 
 **How It Works**: Autoencoders learn to compress and reconstruct data. Anomalies are identified as data points with high reconstruction error.
 
+**Cost Function**: The cost function for autoencoders is the reconstruction error, typically measured as Mean Squared Error (MSE) between the original and reconstructed data. Points with high reconstruction errors are flagged as anomalies.
+
 **Example**: Detecting unusual system behavior based on system logs. Autoencoders can learn normal patterns in logs and flag entries that deviate significantly as anomalies.
 
 ##### LSTM (Long Short-Term Memory) Networks
@@ -904,34 +937,9 @@ Anomaly detection models are used to identify unusual patterns or outliers in da
 
 **How It Works**: LSTM networks learn patterns in sequential data and can identify deviations from these patterns as anomalies.
 
+**Cost Function**: The cost function for LSTM networks is typically the Mean Squared Error (MSE) between the predicted and actual sequences. Points with high prediction errors are considered anomalies.
+
 **Example**: Identifying unusual sequences of user actions in a web application. LSTM networks can learn normal sequences of actions and detect deviations that may indicate malicious behavior.
-
-#### 6. Ensemble Methods
-**Definition**: Ensemble methods combine multiple anomaly detection models to improve the accuracy and robustness of anomaly detection.
-
-##### Random Forests for Anomaly Detection
-**When to Use**: Use Random Forests for robust anomaly detection in large and complex datasets.
-
-**How It Works**: Random Forests combine multiple decision trees, each trained on different parts of the dataset. Anomalies are detected based on the consensus of the trees.
-
-**Example**: Identifying anomalies in user activity logs. Random Forests can leverage multiple decision trees to detect deviations from normal user behavior.
-
-##### Gradient Boosting Machines (GBM) for Anomaly Detection
-**When to Use**: Use GBM when you need high accuracy in detecting anomalies by leveraging the boosting technique.
-
-**How It Works**: GBM builds an ensemble of weak learners (typically decision trees) sequentially, where each new tree corrects the errors of the previous ones.
-
-**Example**: Detecting sophisticated cyber attacks by analyzing network traffic patterns. GBM can iteratively improve its detection capability by focusing on hard-to-detect anomalies.
-
-#### 7. Probabilistic Methods
-**Definition**: Probabilistic methods for anomaly detection use probability distributions to model normal data behavior and identify anomalies as data points with low probabilities.
-
-##### Bayesian Networks
-**When to Use**: Use Bayesian Networks when you need to model complex dependencies between features and identify anomalies probabilistically.
-
-**How It Works**: Bayesian Networks represent the joint probability distribution of a set of variables using a directed acyclic graph. Anomalies are identified as points with low probability under the learned distribution.
-
-**Example**: Identifying anomalies in network configurations. Bayesian Networks can model the dependencies between different configuration settings and flag unusual combinations as potential misconfigurations or security risks.
 
 ### Summary
 Understanding these key anomaly detection models and their applications in cybersecurity helps in selecting the right tool for identifying unusual patterns and potential threats. Each model has its strengths and is suited for different types of problems, from simple statistical deviations to complex patterns in high-dimensional data.
