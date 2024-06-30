@@ -93,59 +93,89 @@ Reinforcement learning (RL) involves training an agent to make a sequence of dec
 ## 2. Understanding Performance Metrics
 
 ### Accuracy
-**When to Use**: Accuracy is useful when the classes are balanced, meaning there are roughly equal numbers of positive and negative cases.
+**When to Use**: Use accuracy when the classes are balanced, meaning there are roughly equal numbers of positive and negative cases.
 
-**Cybersecurity Use Case**: In a scenario where you are classifying emails as spam or not spam, and you have a balanced dataset of spam and non-spam emails, accuracy can give a good indication of your model's performance.
+**Cybersecurity Use Case**: Classifying emails as spam or not spam with a balanced dataset of spam and non-spam emails.
 
-**How It Works**: Accuracy is calculated as the number of correct predictions divided by the total number of predictions.
+**How It Works**: Accuracy measures the proportion of correct predictions out of the total predictions.
 <p>Accuracy = (True Positives + True Negatives) / Total Predictions</p>
 
-**Key Factors**: High accuracy requires both true positives and true negatives to be high. It doesn't account for class imbalance, so in cybersecurity, ensure your dataset is balanced before relying on accuracy.
+**Key Factors**: High accuracy requires both true positives and true negatives to be high. 
+
+**Example Explanation**: 
+If you have 100 emails, 50 are spam (positive) and 50 are not spam (negative). If your model correctly identifies 45 spam emails (True Positives) and 40 not spam emails (True Negatives), your accuracy is:
+<p>Accuracy = (45 + 40) / 100 = 0.85 or 85%</p>
+
+However, if your dataset is imbalanced with 90 not spam and 10 spam emails, and your model identifies 85 not spam emails correctly but only 2 spam emails correctly, your accuracy would be:
+<p>Accuracy = (2 + 85) / 100 = 0.87 or 87%</p>
+
+Despite the high accuracy, your model is not good at identifying spam (low True Positives), highlighting the issue with using accuracy in imbalanced datasets.
 
 ### Precision
-**When to Use**: Precision is critical when the cost of false positives is high. For example, in cybersecurity, falsely flagging legitimate user activity as malicious can lead to unnecessary investigations and wasted resources.
+**When to Use**: Use precision when the cost of false positives is high. For example, in cybersecurity, falsely flagging legitimate user activity as malicious can lead to unnecessary investigations.
 
 **Cybersecurity Use Case**: Detecting phishing emails where a false positive (legitimate email marked as phishing) can disrupt business operations.
 
-**How It Works**: Precision is the number of true positive predictions divided by the total number of positive predictions.
+**How It Works**: Precision measures the proportion of true positive predictions out of all positive predictions.
 <p>Precision = True Positives / (True Positives + False Positives)</p>
 
-**Key Factors**: High precision requires minimizing false positives. This means being very certain about a prediction before classifying it as positive, which might lower recall.
+**Key Factors**: High precision requires minimizing false positives. 
+
+**Example Explanation**: 
+If your model predicts 20 emails as phishing, but only 15 of them are actually phishing (True Positives) and 5 are not (False Positives), your precision is:
+<p>Precision = 15 / (15 + 5) = 0.75 or 75%</p>
+
+High precision ensures that most emails flagged as phishing are indeed phishing, minimizing the disruption caused by false alarms.
 
 ### Recall
-**When to Use**: Recall is important when missing a positive case is very costly, such as missing a potential security threat.
+**When to Use**: Use recall when missing a positive case is very costly, such as missing a potential security threat.
 
 **Cybersecurity Use Case**: Detecting malware where missing a malware instance (false negative) can lead to a severe security breach.
 
-**How It Works**: Recall is the number of true positive predictions divided by the total number of actual positives.
+**How It Works**: Recall measures the proportion of true positive predictions out of all actual positives.
 <p>Recall = True Positives / (True Positives + False Negatives)</p>
 
-**Key Factors**: High recall requires minimizing false negatives. This means identifying as many positive cases as possible, even if it increases false positives, which might lower precision.
+**Key Factors**: High recall requires minimizing false negatives. 
+
+**Example Explanation**: 
+If there are 20 malware instances in your system and your model correctly identifies 15 of them (True Positives) but misses 5 (False Negatives), your recall is:
+<p>Recall = 15 / (15 + 5) = 0.75 or 75%</p>
+
+High recall ensures that most malware instances are detected, even if it means some false alarms (false positives).
 
 ### F1 Score
-**When to Use**: The F1 Score is useful when you need a balance between precision and recall, especially in imbalanced datasets.
+**When to Use**: Use the F1 Score when you need a balance between precision and recall, especially in imbalanced datasets.
 
 **Cybersecurity Use Case**: General threat detection systems where both false positives and false negatives have significant consequences.
 
 **How It Works**: The F1 Score is the harmonic mean of precision and recall.
 <p>F1 Score = 2 * (Precision * Recall) / (Precision + Recall)</p>
 
-**Key Factors**: The F1 Score balances precision and recall. It is high only when both precision and recall are high, making it suitable for evaluating models on imbalanced datasets.
+**Key Factors**: The F1 Score balances precision and recall. 
+
+**Example Explanation**: 
+Using the previous precision (0.75) and recall (0.75) examples:
+<p>F1 Score = 2 * (0.75 * 0.75) / (0.75 + 0.75) = 0.75 or 75%</p>
+
+The F1 Score is high only when both precision and recall are high, making it suitable for evaluating models on imbalanced datasets.
 
 ### ROC-AUC
-**When to Use**: ROC-AUC is useful for evaluating the overall performance of a classification model across different thresholds.
+**When to Use**: Use ROC-AUC for evaluating the overall performance of a classification model across different thresholds.
 
 **Cybersecurity Use Case**: Evaluating the performance of an intrusion detection system where you need to understand the trade-off between true positive and false positive rates at various thresholds.
 
 **How It Works**: The ROC curve plots the true positive rate against the false positive rate at various threshold settings. AUC (Area Under the Curve) measures the entire two-dimensional area underneath the entire ROC curve.
 <p>AUC = ∫<sub>0</sub><sup>1</sup> ROC(t) dt</p>
 
-**Key Factors**: High ROC-AUC indicates that the model performs well across all thresholds. It is less sensitive to class imbalance and provides a single measure to compare models.
+**Key Factors**: High ROC-AUC indicates that the model performs well across all thresholds. 
+
+**Example Explanation**: 
+A model with a high AUC means it is good at distinguishing between positive and negative classes across different threshold values. This is crucial for models that need to operate effectively at various sensitivity levels.
 
 ## 3. Understanding Cost Functions
 
 ### Mean Squared Error (MSE)
-**When to Use**: MSE is used in regression tasks where the goal is to predict continuous outcomes.
+**When to Use**: Use MSE in regression tasks where the goal is to predict continuous outcomes.
 
 **Cybersecurity Use Case**: Predicting the number of future cyber attacks based on historical data.
 
@@ -153,10 +183,14 @@ Reinforcement learning (RL) involves training an agent to make a sequence of dec
 <p>MSE = (1/n) * Σ(y<sub>i</sub> - ŷ<sub>i</sub>)<sup>2</sup></p>
 where y<sub>i</sub> is the actual value and ŷ<sub>i</sub> is the predicted value.
 
-**Key Factors**: Minimizing MSE requires accurate predictions that are close to the actual values. Squaring the errors penalizes larger errors more, making the model sensitive to outliers.
+**Key Factors**: Minimizing MSE requires accurate predictions that are close to the actual values. Squaring the errors penalizes larger errors more, making the model sensitive to outliers. 
+
+**Example Explanation**: 
+If you predict the number of attacks per month as 10, 20, 30, and the actual numbers are 12, 18, 33:
+<p>MSE = (1/3) * [(12-10)<sup>2</sup> + (18-20)<sup>2</sup> + (33-30)<sup>2</sup>] = (1/3) * [4 + 4 + 9] = 5.67</p>
 
 ### Cross-Entropy Loss
-**When to Use**: Cross-Entropy Loss is used in classification tasks to measure the difference between the actual and predicted probability distributions.
+**When to Use**: Use Cross-Entropy Loss in classification tasks to measure the difference between the actual and predicted probability distributions.
 
 **Cybersecurity Use Case**: Classifying emails as phishing or not phishing.
 
@@ -166,8 +200,12 @@ where y<sub>i</sub> is the actual label (0 or 1) and ŷ<sub>i</sub> is the predi
 
 **Key Factors**: Minimizing Cross-Entropy Loss requires the predicted probabilities to be close to the actual labels. This ensures that the model is confident and correct in its predictions.
 
+**Example Explanation**: 
+If your model predicts probabilities of an email being phishing as 0.8 (true label 1), 0.4 (true label 0), the Cross-Entropy Loss is:
+<p>Cross-Entropy Loss = - (1/2) * [1 * log(0.8) + 0 * log(0.6) + 1 * log(0.4) + 0 * log(0.6)] = 0.51</p>
+
 ### Hinge Loss
-**When to Use**: Hinge Loss is used for training Support Vector Machines (SVMs).
+**When to Use**: Use Hinge Loss for training Support Vector Machines (SVMs).
 
 **Cybersecurity Use Case**: Classifying network traffic as normal or suspicious.
 
@@ -175,10 +213,14 @@ where y<sub>i</sub> is the actual label (0 or 1) and ŷ<sub>i</sub> is the predi
 <p>Hinge Loss = (1/n) * Σ max(0, 1 - y<sub>i</sub> * ŷ<sub>i</sub>)</p>
 where y<sub>i</sub> is the actual label (-1 or 1) and ŷ<sub>i</sub> is the predicted value.
 
-**Key Factors**: Minimizing Hinge Loss requires maximizing the margin between classes while correctly classifying the data points. It ensures that the decision boundary is as far as possible from the closest data points of each class.
+**Key Factors**: Minimizing Hinge Loss requires maximizing the margin between classes while correctly classifying the data points. 
+
+**Example Explanation**: 
+If you have predictions 0.9, -0.7 for actual labels 1, -1 respectively, Hinge Loss is:
+<p>Hinge Loss = (1/2) * [max(0, 1 - 1 * 0.9) + max(0, 1 - (-1) * (-0.7))] = 0.2</p>
 
 ### Gini Impurity and Entropy
-**When to Use**: Gini Impurity and Entropy are used in decision trees to measure the purity of a split.
+**When to Use**: Use Gini Impurity and Entropy in decision trees to measure the purity of a split.
 
 **Cybersecurity Use Case**: Detecting anomalies in user behavior by classifying activities as normal or abnormal.
 
@@ -190,10 +232,15 @@ where y<sub>i</sub> is the actual label (-1 or 1) and ŷ<sub>i</sub> is the pred
   <p>Entropy = - Σ p<sub>i</sub> log(p<sub>i</sub>)</p>
   where p<sub>i</sub> is the probability of class i.
 
-**Key Factors**: Lower Gini Impurity and Entropy values indicate a more homogeneous node, leading to better classification performance. Decision trees aim to split the data to minimize these values.
+**Key Factors**: Lower Gini Impurity and Entropy values indicate a more homogeneous node, leading to better classification performance. 
+
+**Example Explanation**: 
+For a node with 10 normal and 30 abnormal activities:
+<p>Gini Impurity = 1 - [(10/40)<sup>2</sup> + (30/40)<sup>2</sup>] = 0.375</p>
+<p>Entropy = -[(10/40) log(10/40) + (30/40) log(30/40)] ≈ 0.81</p>
 
 ### Mean Absolute Error (MAE)
-**When to Use**: MAE is used in regression tasks where you need an easily interpretable measure of prediction errors.
+**When to Use**: Use MAE in regression tasks where you need an easily interpretable measure of prediction errors.
 
 **Cybersecurity Use Case**: Estimating the time to resolve a security incident based on historical resolution times.
 
@@ -201,4 +248,8 @@ where y<sub>i</sub> is the actual label (-1 or 1) and ŷ<sub>i</sub> is the pred
 <p>MAE = (1/n) * Σ | y<sub>i</sub> - ŷ<sub>i</sub> |</p>
 where y<sub>i</sub> is the actual value and ŷ<sub>i</sub> is the predicted value.
 
-**Key Factors**: Minimizing MAE requires accurate predictions with smaller deviations from actual values. Unlike MSE, MAE is less sensitive to outliers, providing a straightforward error measure.
+**Key Factors**: Minimizing MAE requires accurate predictions with smaller deviations from actual values. 
+
+**Example Explanation**: 
+If the actual resolution times are 5, 10, 15 hours and predicted are 6, 9, 14 hours:
+<p>MAE = (1/3) * [|5-6| + |10-9| + |15-14|] = 1</p>
