@@ -243,6 +243,36 @@ If you predict the number of cyber attacks per month as 10, 20, 30, and the actu
 <p>MSE = (1/3) * [(12-10)<sup>2</sup> + (18-20)<sup>2</sup> + (33-30)<sup>2</sup>] = (1/3) * [4 + 4 + 9] = 5.67</p>
 A lower MSE indicates your predictions are closer to the actual values.
 
+### Mean Absolute Error (MAE)
+**Cybersecurity Use Case**: Estimating the time to resolve a security incident based on historical resolution times. The goal is to have the predicted resolution times (ŷ<sub>i</sub>) as close as possible to the actual resolution times (y<sub>i</sub>).
+
+**When to Use**: Use MAE in regression tasks where you need an easily interpretable measure of prediction errors.
+
+**How It Works**: MAE measures the average absolute difference between the actual values (y<sub>i</sub>) and the predicted values (ŷ<sub>i</sub>).
+<p>MAE = (1/n) * Σ | y<sub>i</sub> - ŷ<sub>i</sub> |</p>
+where y<sub>i</sub> is the actual value and ŷ<sub>i</sub> is the predicted value.
+
+**Key Factors**: Minimizing MAE means making your predictions as close as possible to the actual values.
+
+**Example Explanation**: 
+If the actual resolution times are 5, 10, 15 hours and predicted are 6, 9, 14 hours:
+<p>MAE = (1/3) * [|5-6| + |10-9| + |15-14|] = 1</p>
+A lower MAE indicates your predictions are closer to the actual values.
+
+### Huber Loss
+**Cybersecurity Use Case**: Predicting the duration of future security incidents where the data contains outliers.
+
+**When to Use**: Use Huber Loss in regression tasks when you need to handle outliers robustly.
+
+**How It Works**: Huber Loss is a combination of MSE and MAE that is less sensitive to outliers than MSE and more robust than MAE.
+<p>Huber Loss = { 0.5 * (y<sub>i</sub> - ŷ<sub>i</sub>)<sup>2</sup> for |y<sub>i</sub> - ŷ<sub>i</sub>| ≤ δ; δ * |y<sub>i</sub> - ŷ<sub>i</sub>| - 0.5 * δ<sup>2</sup> otherwise }</p>
+
+**Key Factors**: Minimizing Huber Loss means handling both the data points near the prediction and the outliers effectively.
+
+**Example Explanation**: 
+For δ = 1 and actual values 5, 10, 15 with predictions 6, 9, 20:
+<p>Huber Loss = (1/3) * [0.5 * (1)<sup>2</sup> + 0.5 * (1)<sup>2</sup> + (5 - 0.5)] = 2.5</p>
+
 ### Cross-Entropy Loss
 **Cybersecurity Use Case**: Classifying emails as phishing or not phishing. The goal is to have the predicted probability (ŷ<sub>i</sub>) of an email being phishing to be as close as possible to the actual label (y<sub>i</sub>), which is 1 for phishing and 0 for not phishing.
 
@@ -268,7 +298,7 @@ A lower cross-entropy loss indicates better performance.
 <p>Hinge Loss = (1/n) * Σ max(0, 1 - y<sub>i</sub> * ŷ<sub>i</sub>)</p>
 where y<sub>i</sub> is the actual label (-1 or 1) and ŷ<sub>i</sub> is the predicted value.
 
-**Key Factors**: Minimizing Hinge Loss means maximizing the margin between classes while correctly classifying the data points. 
+**Key Factors**: Minimizing Hinge Loss means maximizing the margin between classes while correctly classifying the data points.
 
 **Example Explanation**: 
 If you have predictions 0.9, -0.7 for actual labels 1, -1 respectively, Hinge Loss is:
@@ -297,21 +327,161 @@ For a node with 10 normal and 30 abnormal activities:
 <p>Entropy = -[(10/40) log(10/40) + (30/40) log(30/40)] ≈ 0.81</p>
 Lower impurity or entropy means the data at that node is more pure, helping the tree make better decisions.
 
-### Mean Absolute Error (MAE)
-**Cybersecurity Use Case**: Estimating the time to resolve a security incident based on historical resolution times. The goal is to have the predicted resolution times (ŷ<sub>i</sub>) as close as possible to the actual resolution times (y<sub>i</sub>).
+### Kullback-Leibler Divergence (KL Divergence)
+**Cybersecurity Use Case**: Detecting deviations in network traffic patterns by comparing the observed traffic distribution with a baseline distribution.
 
-**When to Use**: Use MAE in regression tasks where you need an easily interpretable measure of prediction errors.
+**When to Use**: Use KL Divergence in tasks where you need to measure the difference between two probability distributions.
 
-**How It Works**: MAE measures the average absolute difference between the actual values (y<sub>i</sub>) and the predicted values (ŷ<sub>i</sub>).
-<p>MAE = (1/n) * Σ | y<sub>i</sub> - ŷ<sub>i</sub> |</p>
-where y<sub>i</sub> is the actual value and ŷ<sub>i</sub> is the predicted value.
+**How It Works**: KL Divergence measures how one probability distribution diverges from a second, expected probability distribution.
+<p>KL Divergence = Σ p(x) log(p(x) / q(x))</p>
+where p(x) is the true distribution and q(x) is the predicted distribution.
 
-**Key Factors**: Minimizing MAE means making your predictions as close as possible to the actual values.
+**Key Factors**: Minimizing KL Divergence means making the predicted distribution as close as possible to the true distribution.
 
 **Example Explanation**: 
-If the actual resolution times are 5, 10, 15 hours and predicted are 6, 9, 14 hours:
-<p>MAE = (1/3) * [|5-6| + |10-9| + |15-14|] = 1</p>
-A lower MAE indicates your predictions are closer to the actual values.
+If your model predicts a distribution q(x) = [0.2, 0.5, 0.3] for classes and the true distribution p(x) = [0.1, 0.6, 0.3]:
+<p>KL Divergence = 0.1 * log(0.1/0.2) + 0.6 * log(0.6/0.5) + 0.3 * log(0.3/0.3) ≈ 0.033</p>
+A lower KL divergence indicates the predicted distribution is close to the true distribution.
+
+### Poisson Loss
+**Cybersecurity Use Case**: Predicting the count of login attempts from a specific IP address to detect potential brute force attacks.
+
+**When to Use**: Use Poisson Loss in regression tasks where the target variable represents count data.
+
+**How It Works**: Poisson Loss measures the difference between the predicted and actual counts, assuming the target follows a Poisson distribution.
+<p>Poisson Loss = (1/n) * Σ (ŷ<sub>i</sub> - y<sub>i</sub> log(ŷ<sub>i</sub>))</p>
+where y<sub>i</sub> is the actual count and ŷ<sub>i</sub> is the predicted count.
+
+**Key Factors**: Minimizing Poisson Loss means making your predictions as close as possible to the actual counts, appropriate for count data.
+
+**Example Explanation**: 
+If actual login attempts are 3, 7, 9 and predicted are 2.5, 7.5, 8.5:
+<p>Poisson Loss = (1/3) * [2.5 - 3 log(2.5) + 7.5 - 7 log(7.5) + 8.5 - 9 log(8.5)] ≈ 0.485</p>
+
+### Cosine Similarity Loss
+**Cybersecurity Use Case**: Measuring the similarity between network traffic patterns to identify potential DDoS attacks.
+
+**When to Use**: Use Cosine Similarity Loss in tasks where the goal is to measure the similarity between two vectors.
+
+**How It Works**: Cosine Similarity Loss measures the cosine of the angle between two non-zero vectors, indicating their orientation similarity.
+<p>Cosine Similarity = 1 - (A · B) / (||A|| ||B||)</p>
+where A and B are the vectors.
+
+**Key Factors**: Minimizing Cosine Similarity Loss means making the vectors more similar in terms of orientation.
+
+**Example Explanation**: 
+If vectors A = [1, 0, -1] and B = [0.5, 0.5, -0.5]:
+<p>Cosine Similarity = 1 - (1*0.5 + 0*0.5 + (-1)*(-0.5)) / (sqrt(1+0+1) * sqrt(0.25+0.25+0.25)) ≈ 0.134</p>
+A lower cosine similarity loss indicates higher similarity between the vectors.
+
+### Negative Log-Likelihood
+**Cybersecurity Use Case**: Estimating the probability of different types of cyber attacks occurring.
+
+**When to Use**: Use Negative Log-Likelihood in probabilistic models where the goal is to maximize the likelihood of the observed data.
+
+**How It Works**: Negative Log-Likelihood measures the likelihood of the observed data given the model's parameters, taking the negative logarithm to convert it into a minimization problem.
+<p>Negative Log-Likelihood = - Σ log(P(y<sub>i</sub> | X<sub>i</sub>))</p>
+where P(y<sub>i</sub> | X<sub>i</sub>) is the predicted probability of the observed outcome y<sub>i</sub> given input X<sub>i</sub>.
+
+**Key Factors**: Minimizing Negative Log-Likelihood means increasing the likelihood of the observed data under the model.
+
+**Example Explanation**: 
+If the predicted probabilities for observed outcomes are 0.7, 0.2, 0.9:
+<p>Negative Log-Likelihood = - [log(0.7) + log(0.2) + log(0.9)] ≈ 1.90</p>
+A lower negative log-likelihood indicates the model better fits the observed data.
+
+### Categorical Cross-Entropy Loss
+**Cybersecurity Use Case**: Classifying different types of cyber threats, such as malware, phishing, and ransomware.
+
+**When to Use**: Use Categorical Cross-Entropy Loss in multi-class classification tasks where each sample belongs to one of several classes.
+
+**How It Works**: Categorical Cross-Entropy Loss measures the difference between the true label distribution and the predicted probability distribution.
+<p>Categorical Cross-Entropy Loss = - Σ y<sub>i</sub> log(ŷ<sub>i</sub>)</p>
+where y<sub>i</sub> is the actual one-hot encoded label and ŷ<sub>i</sub> is the predicted probability for each class.
+
+**Key Factors**: Minimizing Categorical Cross-Entropy Loss means making the predicted probabilities close to the true labels for each class.
+
+**Example Explanation**: 
+If the actual labels are [1, 0, 0], [0, 1, 0], [0, 0, 1] and predicted probabilities are [0.7, 0.2, 0.1], [0.1, 0.8, 0.1], [0.2, 0.2, 0.6]:
+<p>Categorical Cross-Entropy Loss = - [log(0.7) + log(0.8) + log(0.6)] ≈ 0.45</p>
+
+### Binary Cross-Entropy Loss
+**Cybersecurity Use Case**: Detecting whether a network intrusion has occurred or not.
+
+**When to Use**: Use Binary Cross-Entropy Loss in binary classification tasks where each sample belongs to one of two classes.
+
+**How It Works**: Binary Cross-Entropy Loss measures the difference between the true binary labels and the predicted probabilities.
+<p>Binary Cross-Entropy Loss = - (1/n) * Σ [ y<sub>i</sub> log(ŷ<sub>i</sub>) + (1 - y<sub>i</sub>) log(1 - ŷ<sub>i</sub>) ]</p>
+where y<sub>i</sub> is the actual binary label and ŷ<sub>i</sub> is the predicted probability.
+
+**Key Factors**: Minimizing Binary Cross-Entropy Loss means making the predicted probabilities close to the true binary labels.
+
+**Example Explanation**: 
+If the actual labels are 1, 0, 1 and predicted probabilities are 0.8, 0.2, 0.9:
+<p>Binary Cross-Entropy Loss = - (1/3) * [log(0.8) + log(0.8) + log(0.1)] ≈ 0.22</p>
+
+### Quantile Loss
+**Cybersecurity Use Case**: Predicting the 90th percentile of response times for incident resolution to understand worst-case scenarios.
+
+**When to Use**: Use Quantile Loss in regression tasks where you need to predict specific quantiles of the target variable distribution.
+
+**How It Works**: Quantile Loss measures the difference between predicted and actual values, penalizing over- and under-estimations differently based on the quantile.
+<p>Quantile Loss = (1/n) * Σ max(τ(y<sub>i</sub> - ŷ<sub>i</sub>), (τ - 1)(y<sub>i</sub> - ŷ<sub>i</sub>))</p>
+where τ is the quantile to predict.
+
+**Key Factors**: Minimizing Quantile Loss means making your predictions as close as possible to the specified quantile of the actual values.
+
+**Example Explanation**: 
+For τ = 0.9 and actual values 5, 10, 15 with predicted 6, 9, 14:
+<p>Quantile Loss = (1/3) * [0.9(5-6) + 0.9(10-9) + 0.9(15-14)] ≈ 0.3</p>
+A lower quantile loss indicates better prediction of the specified quantile.
+
+### Mean Squared Logarithmic Error (MSLE)
+**Cybersecurity Use Case**: Predicting the number of alerts generated by a security system, where the data spans several orders of magnitude.
+
+**When to Use**: Use MSLE in regression tasks where the target variable ranges over several orders of magnitude and relative differences are more important than absolute differences.
+
+**How It Works**: MSLE measures the average squared difference between the logarithms of the actual values and the predicted values.
+<p>MSLE = (1/n) * Σ (log(y<sub>i</sub> + 1) - log(ŷ<sub>i</sub> + 1))<sup>2</sup></p>
+
+**Key Factors**: Minimizing MSLE means making your predictions as close as possible to the actual values in logarithmic space, reducing the impact of large outliers.
+
+**Example Explanation**: 
+If actual alert counts are 10, 100, 1000 and predicted counts are 8, 120, 900:
+<p>MSLE = (1/3) * [(log(10+1) - log(8+1))<sup>2</sup> + (log(100+1) - log(120+1))<sup>2</sup> + (log(1000+1) - log(900+1))<sup>2</sup>] ≈ 0.01</p>
+
+### Poisson Log-Likelihood Loss
+**Cybersecurity Use Case**: Predicting the number of attack attempts on a server, where the number of attempts follows a Poisson distribution.
+
+**When to Use**: Use Poisson Log-Likelihood Loss in regression tasks where the target variable represents count data that follows a Poisson distribution.
+
+**How It Works**: Poisson Log-Likelihood Loss measures the difference between the predicted and actual counts under the assumption that the data follows a Poisson distribution.
+<p>Poisson Log-Likelihood Loss = (1/n) * Σ (ŷ<sub>i</sub> - y<sub>i</sub> log(ŷ<sub>i</sub>))</p>
+
+**Key Factors**: Minimizing Poisson Log-Likelihood Loss means making your predictions as close as possible to the actual counts, assuming a Poisson distribution.
+
+**Example Explanation**: 
+If actual counts of attack attempts are 3, 7, 9 and predicted counts are 2.5, 7.5, 8.5:
+<p>Poisson Log-Likelihood Loss = (1/3) * [2.5 - 3 log(2.5) + 7.5 - 7 log(7.5) + 8.5 - 9 log(8.5)] ≈ 0.485</p>
+
+### Triplet Loss
+**Cybersecurity Use Case**: Learning representations for user behavior patterns to distinguish between normal and malicious activities.
+
+**When to Use**: Use Triplet Loss in tasks where the goal is to learn embeddings that separate different classes while bringing similar examples closer.
+
+**How It Works**: Triplet Loss measures the relative similarity between an anchor, a positive, and a negative example, ensuring the positive is closer to the anchor than the negative.
+<p>Triplet Loss = max(0, ||f(a) - f(p)||<sup>2</sup> - ||f(a) - f(n)||<sup>2</sup> + α)</p>
+where a is the anchor, p is the positive example, n is the negative example, and α is the margin.
+
+**Key Factors**: Minimizing Triplet Loss means making the embeddings of similar examples closer while keeping different examples apart.
+
+**Example Explanation**: 
+If the distances for an anchor-positive pair are 0.5 and anchor-negative pair are 1.5 with α = 1:
+<p>Triplet Loss = max(0, (0.5)<sup>2</sup> - (1.5)<sup>2</sup> + 1) = 0</p>
+A lower triplet loss indicates better separation of classes in the embedding space.
+
+### Summary
+This comprehensive list of cost functions covers a wide range of tasks and models used in machine learning, particularly in cybersecurity. Each function is explained with a cybersecurity use case, when to use it, how it works, and an example explanation to ensure a thorough understanding of its application.
 
 ## 4. Universe of Problems Machine Learning Models Solve
 
