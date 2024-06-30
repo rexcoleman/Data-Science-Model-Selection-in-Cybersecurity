@@ -216,4 +216,11 @@ where \( y_i \) is the actual value and \( \hat{y}_i \) is the predicted value.
 
 MSE = (1/n) * Σ(y_i - ŷ_i)^2
 
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<p>
+$$ \text{MSE} = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2 $$
+</p>
+
+
 
